@@ -25,8 +25,8 @@
                                 <h4 class="card-title">Contact List</h4>
                             </div><!--end card-header-->
                              <div class="card-body">
-                                <div class="table-responsive">
-                                <table id="datatable_contact" class="table table-bordered display" width="100%" >
+                                <div class="table-responsive" style="width:1060px;">
+                                <table id="datatable_contact" class="table table-bordered display" >
                                      <thead>
                                             <tr>
                                                 <th width="5%">S.No.</th>
@@ -38,7 +38,7 @@
                                                 <th width="5%">Email ID</th>
                                                 <th width="10%">Address (Home)</th>
                                                 <th width="10%">Address (Office)</th> 
-                                                <!-- <th width="10%">Address (Room)</th> -->
+                                                <th width="10%">Address (Room)</th>
                                                 <th width="5%">Action</th>
                                             </tr>
                                         </thead>
@@ -56,7 +56,7 @@
                                                 <td width="5%"><?= $val['cont_email']?></td>
                                                 <td width="10%"><?= $val['home_address']?></td>
                                                 <td width="10%"><?= $val['office_address']?></td>
-                                                <!-- <td width="10%"><?= $val['siting_address']?></td> -->
+                                                <td width="10%"><?= $val['siting_address']?></td>
                                                 <td width="5%"><a class="btn btn-sm btn-primary" href="<?=base_url('Edit-Contacts')?>?id=<?=$val['id']?>">Update</a></td>
                                             </tr>
                                             <?php } ?>

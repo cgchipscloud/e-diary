@@ -22,10 +22,9 @@
         $(document).ready(function() {
 
 
-            $('#datatable').dataTable( {
+            $('#datatable_contact').dataTable( {
                 
-                "scrollY": 20,
-                "scrollY": true,
+                "width":1060,
                 "scrollX": true
             } );
 
@@ -61,5 +60,5 @@
         
     } );
         $("#datatables_list").DataTable();
-        $("#datatable_contact").DataTable();
+        //$("#datatable_contact").DataTable();
     </script>

@@ -6,7 +6,7 @@
                             <div class="row">
                                 <div class="col">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href=javascript:void(0)>E-Diary</a>
+                                        <li class="breadcrumb-item"><a href='Edairy-Home'>E-diary Home</a>
                                         </li>
                                         <li class="breadcrumb-item active">List-Contact</li>
                                     </ol>
@@ -38,7 +38,7 @@
                                                 <th width="5%">Email ID</th>
                                                 <th width="10%">Address (Home)</th>
                                                 <th width="10%">Address (Office)</th> 
-                                                <th width="10%">Address (Room)</th>
+                                                <!-- <th width="10%">Address (Room)</th> -->
                                                 <th width="5%">Action</th>
                                             </tr>
                                         </thead>
@@ -56,7 +56,7 @@
                                                 <td width="5%"><?= $val['cont_email']?></td>
                                                 <td width="10%"><?= $val['home_address']?></td>
                                                 <td width="10%"><?= $val['office_address']?></td>
-                                                <td width="10%"><?= $val['siting_address']?></td>
+                                                <!-- <td width="10%"><?= $val['siting_address']?></td> -->
                                                 <td width="5%"><a class="btn btn-sm btn-primary" href="<?=base_url('Edit-Contacts')?>?id=<?=$val['id']?>">Update</a></td>
                                             </tr>
                                             <?php } ?>

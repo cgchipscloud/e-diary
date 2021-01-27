@@ -7,7 +7,7 @@
                             <div class=row>
                                 <div class=col>
                                     <ol class=breadcrumb>
-                                        <li class=breadcrumb-item><a href=javascript:void(0)>E-Diary</a>
+                                        <li class=breadcrumb-item><a href='Edairy-Home'>E-diary Home</a>
                                         </li>
                                         <li class="breadcrumb-item active">Add-Designation</li>
                                     </ol>

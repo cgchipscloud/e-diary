@@ -22,7 +22,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                             <div class="row">
                                 <div class="col">
                                     <ol class="breadcrumb">
-                                        <li class="breadcrumb-item"><a href=javascript:void(0)>E-Diary</a>
+                                        <li class="breadcrumb-item"><a href='Edairy-Home'>E-diary Home</a>
                                         </li>
                                         <li class="breadcrumb-item active">Add-Contacts</li>
                                     </ol>
@@ -111,7 +111,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Address (Home)</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="" type="text" id="example-text-input" name="home_address"  required="" value="<?php echo $data['home_address'];?>" >
+                                                    <input class="form-control" placeholder="" type="text" id="example-text-input" name="home_address"   value="<?php echo $data['home_address'];?>" >
                                                 </div>
                                             </div>
                                         </div>
@@ -120,7 +120,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Address (Office)</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder=""  id="example-text-input" name="office_address" type="text" required="" value="<?php echo $data['office_address'];?>">
+                                                    <input class="form-control" placeholder=""  id="example-text-input" name="office_address" type="text" value="<?php echo $data['office_address'];?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -129,7 +129,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Address (Room)</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder=""  id="example-text-input" name="siting_address" type="text" required=""  value="<?php echo $data['siting_address'];?>">
+                                                    <input class="form-control" placeholder=""  id="example-text-input" name="siting_address" type="text"  value="<?php echo $data['siting_address'];?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -138,7 +138,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Personal)</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_personal_no" type="Number" required="" minlength="10" maxlength="10" value="<?php echo $data['cont_personal_no'];?>">
+                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_personal_no" value="<?php echo $data['cont_personal_no'];?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -147,7 +147,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Office)</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_office_no" type="Number" required="" minlength="10" maxlength="10" value="<?php echo $data['cont_office_no'];?>">
+                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_office_no" type="Number"  value="<?php echo $data['cont_office_no'];?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -156,7 +156,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Email ID</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_email" type="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required="" value="<?php echo $data['cont_email'];?>">
+                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_email" type="Email"  value="<?php echo $data['cont_email'];?>">
                                                 </div>
                                             </div>
                                         </div>
@@ -164,8 +164,8 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                         <div class="col-lg-12">
                                             <div class="row">
                                                 <div class="col-sm-12 text-right">
-                                                    <button type="submit" class="btn btn-primary px-4">Save</button>
-                                                     <button type="clear" class="btn btn-warning px-4">Cancel</button>
+                                                    <button type="submit" class="btn btn-primary px-4">Update</button>
+                                                     <button type="reset" class="btn btn-warning px-4">Cancel</button>
                                                 </div>
                                             </div>
                                         </div>

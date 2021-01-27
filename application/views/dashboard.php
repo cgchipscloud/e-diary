@@ -20,7 +20,9 @@
                 <div class=row>
                     <div class=col-lg-12>
                         <div class="row justify-content-center">
+                        
                             <div class="col-md-6 col-lg-4">
+                                <a href="<?= base_url('List-Contacts')?>">
                                 <div class="card report-card">
                                     <div class=card-body>
                                         <div class="row d-flex justify-content-center">
@@ -36,8 +38,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
+                        
+                        
                             <div class="col-md-6 col-lg-4">
+                                <a  href="<?= base_url('List-Department')?>">
                                 <div class="card report-card">
                                     <div class=card-body>
                                         <div class="row d-flex justify-content-center">
@@ -53,8 +59,12 @@
                                         </div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
+                        
+                        
                             <div class="col-md-6 col-lg-4">
+                                <a  href="<?= base_url('List-Designation')?>">
                                 <div class="card report-card">
                                     <div class=card-body>
                                         <div class="row d-flex justify-content-center">
@@ -70,6 +80,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                </a>
                             </div>
                         </div>
                     </div>

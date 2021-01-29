@@ -45,6 +45,16 @@ class Dashboard extends MY_Controller {
         $this->render_view('add_designation', $data);
     }
 
+    // public function list_dept_desig() 
+    // {
+    //     $data['title']="E-Dairy";
+    //     //$data = array();
+    //     $data['get_department'] = $this->Dashboard_model->get_department();
+    //     $data['desig_data'] = $this->Dashboard_model->list_designation_data();
+
+    //     $this->render_view('desig_dept_tree_list', $data);
+    // }
+
 
     public function add_contact() 
     {
@@ -105,6 +115,8 @@ class Dashboard extends MY_Controller {
         }
         $this->render_view('update_contact', $data);
     }
+
+    
 
     //insert department data start
 
@@ -206,5 +218,22 @@ class Dashboard extends MY_Controller {
         $this->load->view('user_includes/footer_link', $data);
         $this->load->view('user_includes/footer', $data);
     }
+
+    // test function start
+        public function list_dept_desig() 
+        {
+            $return_data = array();
+            $data['title']="E-Dairy";            
+            $deptList = $this->Dashboard_model->get_department();
+            foreach ($deptList as $dept) {
+                $temp["dept_id"] = $dept["dept_id"];
+                $temp["dept_name_hi"] = $dept["dept_name_hi"];
+                $temp["designations"] = $this->Dashboard_model->get_designation($dept["dept_id"]);
+                array_push($return_data,$temp);
+            }
+            $data["dept_design_list"] = $return_data;            
+            $this->render_view('desig_dept_tree_list', $data);
+        }
+    // test function end
 
 }

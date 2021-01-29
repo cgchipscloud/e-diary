@@ -49,7 +49,14 @@ class Dashboard_model extends CI_Model
 
     public function list_designation_data()
     {
-        $sql ="SELECT designation_id,designation_name_eng, designation_name_hindi FROM mst_designation";
+        $sql ="SELECT des.designation_id,dep.dept_id,des.department_id,dep.dept_name_hi, des.designation_name_eng, des.designation_name_hindi FROM mst_designation des
+            JOIN mst_department dep on dep.dept_id=des.department_id";
+
+        // $sql="SELECT des.designation_id,dep.dept_id,dep.dept_name_hi,dep.dept_id, des.designation_name_eng, 
+        //       des.designation_name_hindi 
+        //         FROM mst_designation des
+        //         JOIN mst_department dep on dep.dept_id=des.department_id
+        //         WHERE dep.dept_id=1";
         $data = $this->db->query($sql)->result_array();
         return $data;
 
@@ -205,8 +212,14 @@ class Dashboard_model extends CI_Model
     //     return $data;
     // }
 
+    // public function get_designation($dept_id){
+    //     $getSql="SELECT designation_id,designation_name_eng,department_id, designation_name_hindi FROM mst_designation where department_id =".$dept_id;
+    //     $data = $this->db->query($getSql)->result_array();
+    //     return $data;
+    // }
+
     public function get_designation($dept_id){
-        $getSql="SELECT designation_id,designation_name_eng,department_id, designation_name_hindi FROM mst_designation where department_id =".$dept_id;
+        $getSql="SELECT designation_id,designation_name_eng, designation_name_hindi FROM mst_designation where department_id =".$dept_id;
         $data = $this->db->query($getSql)->result_array();
         return $data;
     }

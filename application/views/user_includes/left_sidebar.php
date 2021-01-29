@@ -27,7 +27,7 @@
 
                 <li><a href="<?=base_url('List-Designation')?>"><i data-feather=align-justify class="align-self-center menu-icon"></i><span>List-Designation</span></a></li> -->
 
-                <!-- <li><a href=widgets.html><i data-feather=award class="align-self-center menu-icon"></i><span>Designation</span></a></li> -->
+                <li><a href="<?=base_url('Department-Designation-list')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>Dept-Designation-list</span></a></li>
             </ul>
         </div>
     </div>

@@ -33,6 +33,7 @@
                                         <thead>
                                         <tr>
                                             <th>S.No.</th>
+                                            <th>Department Name (Hindi)</th>
                                             <th>Designation Name (Hindi)</th>
                                             <th>Designation Name (English)</th>
                                             
@@ -46,6 +47,7 @@
                                                 foreach($desig_data as $val){ ?>
                                             <tr>
                                                 <td><?=$i++;?></td>
+                                                <td><?= $val['dept_name_hi']?></td>
                                                 <td><?= $val['designation_name_hindi']?></td>
                                                 <td><?= $val['designation_name_eng']?></td>
                                             </tr>

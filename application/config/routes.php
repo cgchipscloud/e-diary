@@ -32,6 +32,9 @@ $route['(?i)Update-Contacts'] = 'Dashboard/update_contact_details';
 $route['(?i)Insert-Department'] = 'Dashboard/insert_department';
 $route['(?i)Insert-Designation'] = 'Dashboard/insert_designation';
 $route['(?i)Insert-Contacts'] = 'Dashboard/insert_contact_details';
+$route['(?i)Department-Designation-list'] = 'Dashboard/list_dept_desig';
+
+
 
 
 

@@ -45,16 +45,6 @@ class Dashboard extends MY_Controller {
         $this->render_view('add_designation', $data);
     }
 
-    // public function list_dept_desig() 
-    // {
-    //     $data['title']="E-Dairy";
-    //     //$data = array();
-    //     $data['get_department'] = $this->Dashboard_model->get_department();
-    //     $data['desig_data'] = $this->Dashboard_model->list_designation_data();
-
-    //     $this->render_view('desig_dept_tree_list', $data);
-    // }
-
 
     public function add_contact() 
     {

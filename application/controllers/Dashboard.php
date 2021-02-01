@@ -205,7 +205,7 @@ class Dashboard extends MY_Controller {
             else{
              echo"<script>alert('Try Again.');</script>";
             }
-            redirect(base_url('List-Contacts'), "refresh");
+            redirect(base_url('Ediary-List-Contacts'), "refresh");
         } 
     //update contact details end
 

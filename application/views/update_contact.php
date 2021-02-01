@@ -38,7 +38,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                <form action="<?= base_url(); ?>Update-Contacts" enctype="multipart/form-data" method="post">  
+                                <form action="<?= base_url(); ?>Ediary-Update-Contacts" enctype="multipart/form-data" method="post">  
                                     <div class="row">
 
                                         <input type="hidden" name="id" id="id" value="<?php echo $data['id'];?>">

@@ -12,7 +12,7 @@
                                     </ol>
                                 </div>
                                 <div class="col-auto align-self-center">
-                                    <a class="btn btn-sm btn-primary" href="<?=base_url('Add-Contacts')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>&nbsp;Add-Contact</span></a>
+                                    <a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Add-Contacts')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>&nbsp;Add-Contact</span></a>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +57,7 @@
                                                 <td width="10%"><?= $val['home_address']?></td>
                                                 <td width="10%"><?= $val['office_address']?></td>
                                                 <td width="10%"><?= $val['siting_address']?></td>
-                                                <td width="5%"><a class="btn btn-sm btn-primary" href="<?=base_url('Edit-Contacts')?>?id=<?=$val['id']?>">Update</a></td>
+                                                <td width="5%"><a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Edit-Contacts')?>?id=<?=$val['id']?>">Update</a></td>
                                             </tr>
                                             <?php } ?>
                                         </tbody>

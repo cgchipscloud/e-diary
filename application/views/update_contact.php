@@ -28,7 +28,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                     </ol>
                                 </div>
                                  <div class="col-auto align-self-center">
-                                    <a class="btn btn-sm btn-primary" href="<?=base_url('List-Contacts')?>"><i data-feather=users class="align-self-center menu-icon"></i><span>&nbsp;List-Contacts</span></a>
+                                    <a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-List-Contacts')?>"><i data-feather=users class="align-self-center menu-icon"></i><span>&nbsp;List-Contacts</span></a>
                                 </div>
                             </div>
                         </div>

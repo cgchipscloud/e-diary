@@ -38,7 +38,7 @@
                                         </div>
                                         <div class="btn-group btn-block">
                                             <p class="mb-0 text-center">लॉगिन की सुविधा केवल छत्तीसगढ़ शासन के अधिकृत विभागों के अधीनस्थ कार्यरत अधिकारियों/कर्मचारियों एवं पंजीकृत उपयोगकर्ताओं के लिए है। <br/>  
-                                                <a href="<?=base_url('Login-Admin')?>">
+                                                <a href="<?=base_url('Ediary-Login-Admin')?>">
                                                    <br/> <br/>Login Again</a></p>
                                         </div>
                                     </div>

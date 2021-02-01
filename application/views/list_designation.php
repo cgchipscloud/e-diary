@@ -15,7 +15,7 @@
                                     </ol>
                                 </div>
                                 <div class="col-auto align-self-center">
-                                    <a class="btn btn-sm btn-primary" href="<?=base_url('Add-Designation')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>&nbsp;Add-Designation</span></a>
+                                    <a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Add-Designation')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>&nbsp;Add-Designation</span></a>
                                 </div>
                             </div>
                         </div>

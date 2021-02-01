@@ -22,7 +22,7 @@
                         <div class="row justify-content-center">
                         
                             <div class="col-md-6 col-lg-4">
-                                <a href="<?= base_url('List-Contacts')?>">
+                                <a href="<?= base_url('Ediary-List-Contacts')?>">
                                 <div class="card report-card">
                                     <div class=card-body>
                                         <div class="row d-flex justify-content-center">
@@ -43,7 +43,7 @@
                         
                         
                             <div class="col-md-6 col-lg-4">
-                                <a  href="<?= base_url('List-Department')?>">
+                                <a  href="<?= base_url('Ediary-List-Department')?>">
                                 <div class="card report-card">
                                     <div class=card-body>
                                         <div class="row d-flex justify-content-center">
@@ -64,7 +64,7 @@
                         
                         
                             <div class="col-md-6 col-lg-4">
-                                <a  href="<?= base_url('List-Designation')?>">
+                                <a  href="<?= base_url('Ediary-List-Designation')?>">
                                 <div class="card report-card">
                                     <div class=card-body>
                                         <div class="row d-flex justify-content-center">

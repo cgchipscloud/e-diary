@@ -12,7 +12,7 @@
                                     </ol>
                                 </div>
                                 <div class="col-auto align-self-center">
-                                    <a class="btn btn-sm btn-primary" href="<?=base_url('List-Department')?>"><i data-feather=briefcase class="align-self-center menu-icon"></i><span>&nbsp;List-Department</span></a>
+                                    <a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-List-Department')?>"><i data-feather=briefcase class="align-self-center menu-icon"></i><span>&nbsp;List-Department</span></a>
                                 </div>
                             </div>
                         </div>
@@ -22,7 +22,7 @@
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
-                                <form action="<?= base_url(); ?>Insert-Department" enctype="multipart/form-data" method="post">  
+                                <form action="<?= base_url(); ?>Ediary-Insert-Department" enctype="multipart/form-data" method="post">  
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group row">

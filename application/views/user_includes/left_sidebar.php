@@ -10,24 +10,24 @@
                 <li class="menu-label mt-0">Home</li>
                 <li><a href="<?=base_url('Edairy-Home')?>"> <i data-feather=clipboard class="align-self-center menu-icon"></i><span>Dashboard</span></a></li>
                 <li class="menu-label mt-0">Transaction</li>
-                <li><a href="<?=base_url('Add-Contacts')?>"> <i data-feather=users class="align-self-center menu-icon"></i><span>Contacts</span></a></li>
+                <li><a href="<?=base_url('Ediary-Add-Contacts')?>"> <i data-feather=users class="align-self-center menu-icon"></i><span>Contacts</span></a></li>
 
-                <!-- <li><a href="<?=base_url('Edit-Contacts')?>"> <i data-feather=align-justify class="align-self-center menu-icon"></i><span>Edit-Contacts</span></a></li>
+                <!-- <li><a href="<?=base_url('Ediary-Edit-Contacts')?>"> <i data-feather=align-justify class="align-self-center menu-icon"></i><span>Edit-Contacts</span></a></li>
                 <hr class="hr-dashed hr-menu"> -->
 
                 <li class="menu-label my-2">Master</li>
 
                <!--  <li><a href="<?=base_url('Edairy-Department')?>"><i data-feather=briefcase class="align-self-center menu-icon"></i><span>Departments</span></a></li> -->
 
-                <li><a href="<?=base_url('Add-Department')?>"><i data-feather=briefcase class="align-self-center menu-icon"></i><span>Add-Departments</span></a></li>
+                <li><a href="<?=base_url('Ediary-Add-Department')?>"><i data-feather=briefcase class="align-self-center menu-icon"></i><span>Add-Departments</span></a></li>
 
-                <li><a href="<?=base_url('Add-Designation')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>Add-Designation</span></a></li>
+                <li><a href="<?=base_url('Ediary-Add-Designation')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>Add-Designation</span></a></li>
 
-               <!--  <li><a href="<?=base_url('List-Department')?>"><i data-feather=align-justify class="align-self-center menu-icon"></i><span>List-Department</span></a></li>
+               <!--  <li><a href="<?=base_url('Ediary-List-Department')?>"><i data-feather=align-justify class="align-self-center menu-icon"></i><span>List-Department</span></a></li>
 
-                <li><a href="<?=base_url('List-Designation')?>"><i data-feather=align-justify class="align-self-center menu-icon"></i><span>List-Designation</span></a></li> -->
+                <li><a href="<?=base_url('Ediary-List-Designation')?>"><i data-feather=align-justify class="align-self-center menu-icon"></i><span>List-Designation</span></a></li> -->
 
-                <li><a href="<?=base_url('Department-Designation-list')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>Dept-Designation-list</span></a></li>
+                <li><a href="<?=base_url('Ediary-Department-Designation-list')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>Dept-Designation-list</span></a></li>
             </ul>
         </div>
     </div>

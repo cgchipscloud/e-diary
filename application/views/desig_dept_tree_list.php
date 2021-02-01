@@ -166,7 +166,7 @@
                                     </ol>
                                 </div>
                                 <div class="col-auto align-self-center">
-                                    <a class="btn btn-sm btn-primary" href="<?=base_url('List-Department')?>"><i data-feather=briefcase class="align-self-center menu-icon"></i><span>&nbsp;List-Department</span></a>
+                                    <!-- <a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-List-Department')?>"><i data-feather=briefcase class="align-self-center menu-icon"></i><span>&nbsp;List-Department</span></a> -->
                                 </div>
                             </div>
                         </div>

@@ -13,7 +13,7 @@
                                     </ol>
                                 </div>
                                 <div class="col-auto align-self-center">
-                                    <a class="btn btn-sm btn-primary" href="<?=base_url('Add-Department')?>"><i data-feather=briefcase class="align-self-center menu-icon"></i><span>&nbsp;Add-Department</span></a>
+                                    <a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Add-Department')?>"><i data-feather=briefcase class="align-self-center menu-icon"></i><span>&nbsp;Add-Department</span></a>
                                 </div>
                             </div>
                         </div>

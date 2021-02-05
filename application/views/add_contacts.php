@@ -89,7 +89,7 @@
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Personal)</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number-1 (Personal)</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" placeholder="" type="text" value="" id="example-text-input" name="cont_personal_no" type="Number" required="" minlength="10" maxlength="10">
                                                 </div>
@@ -98,9 +98,27 @@
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Office)</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number-2 (Personal)</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" placeholder="" type="text" value="" id="example-text-input" name="cont_personal_no_two" type="Number" required="" minlength="10" maxlength="10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number-1 (Office)</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" placeholder="" type="tel" value="" id="example-text-input" name="cont_office_no" type="Number" required="" minlength="10" maxlength="10">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number-2 (Office)</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" placeholder="" type="tel" value="" id="example-text-input" name="cont_office_two" type="Number" required="" minlength="10" maxlength="10">
                                                 </div>
                                             </div>
                                         </div>

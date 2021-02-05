@@ -5,7 +5,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
 
   $id = (int)$_GET['id'];
 
-  $query = "SELECT cd.id, cd.name, cd.home_address, cd.office_address,cd.cont_personal_no_two,cd.cont_office_two, cd.siting_address, cd.cont_personal_no, cd.cont_fax, cd.constituency, cd.designation_id ,mde.designation_name_hindi,mde.designation_name_eng, cd.department_id,md.dept_name_en, md.dept_name_hi, cd.cont_email, cd.cont_office_no, cd.nigam_city, cd.district, cd.pbx, cd.vidhansabha_contact 
+  $query = "SELECT cd.id, cd.name, cd.home_address, cd.office_address, cd.siting_address, cd.cont_personal_no, cd.cont_fax, cd.constituency, cd.designation_id ,mde.designation_name_hindi,mde.designation_name_eng, cd.department_id,md.dept_name_en, md.dept_name_hi, cd.cont_email, cd.cont_office_no, cd.nigam_city, cd.district, cd.pbx, cd.vidhansabha_contact 
 
         FROM contact_details cd
         INNER JOIN mst_designation mde ON cd.designation_id=mde.designation_id
@@ -59,6 +59,25 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                             </div>
                                         </div>
 
+                                        <!-- <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-2 col-form-label text-right">Designation Name</label>
+                                                <div class="col-sm-10">
+                                                    <select class="form-control" id="designation_id" name="designation_id" required="">
+                                                    <option value="">Select Designation Name</option>
+                                                    <?php if(!empty($data['designation_id'])){?>
+                                                    
+                                                    <?php foreach ($get_designation as $val) { ?>
+                                                        <option value="<?=$val['designation_id'] ?>"><?= $val['designation_name_hindi'] ?></option>
+                                                      <?php } ?>
+                                                    <?php }?>
+                                                    <option value="<?=$data['designation_id'] ?>"><?= $data['designation_name_hindi'] ?></option>
+                                                    
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div> -->
+
                                         <div class="col-lg-12">
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-2 col-form-label text-right">Designation Name</label>
@@ -70,6 +89,9 @@ if(isset($_GET['id']) && !empty($_GET['id']))
 
                                                     <?php }?>
                                                     <option value="">Select Designation Name</option>
+                                                    <!-- <?php foreach ($get_designation as $val) { ?>
+                                                        <option value="<?=$val['designation_id'] ?>"><?= $val['designation_name_hindi'] ?></option>
+                                                      <?php } ?> -->
                                                     </select>
                                                 </div>
                                             </div>
@@ -112,44 +134,72 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                             </div>
                                         </div>
 
-                                        <div class="col-lg-12">
+                                        <!-- <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number-1 (Personal)</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Personal)</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" placeholder="" id="example-text-input" name="cont_personal_no" value="<?php echo $data['cont_personal_no'];?>">
                                                 </div>
                                             </div>
-                                        </div>
-                                       
-                                        <div class="col-lg-12">
+                                        </div> -->
+                                        <?php 
+                                        $per_result = str_replace( array("&", "/", "-",","), '', $data['cont_personal_no']);
+                                        $ofc_result = str_replace( array("&", "/", "-",","), '', $data['cont_office_no']);
+                                             $per_con1= substr($per_result,0,10);
+                                             $per_con2= substr($per_result,11);
+                                             $ofc_con1= substr($ofc_result,0,10);
+                                             $ofc_con2= substr($ofc_result,11);
+                                         ?>
+
+                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number-2 (Personal)</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Personal)</label>
 
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_personal_no_two"  value="<?php echo $data['cont_personal_no_two'];?>">
+                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_personal_no" value="<?php echo $per_con1;?>">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number-1 (Office)</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Personal)</label>
 
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_office_no"  value="<?php echo $data['cont_office_no'];?>">
+                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_personal_no_two"  value="<?php echo $per_con2;?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Office)</label>
+
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_office_no" type="Number"  value="<?php echo $data['cont_office_no'];?>">
+                                                </div>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Office)</label>
+
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_office_no"   value="<?php echo $ofc_con1;?>">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number-2 (Office)</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Contact Number (Office)</label>
+
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_office_two" value="<?php echo $data['cont_office_two'];?>">
+                                                    <input class="form-control" placeholder="" id="example-text-input" name="cont_office_two"  value="<?php echo $ofc_con2;?>">
                                                 </div>
                                             </div>
                                         </div>
-
                                         <div class="col-lg-12">
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Email ID</label>

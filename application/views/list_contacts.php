@@ -33,8 +33,10 @@
                                                  <th width="15%">Name</th>
                                                 <th width="15%">Department</th>
                                                 <th width="10%">Designation</th>
-                                                <th width="5%">contact No.(Personal)</th>
-                                                <th width="10%">contact No.(Office)</th>
+                                                <th width="5%">Contact No-1 (Personal)</th>
+                                                <th width="5%">Contact No-2 (Personal)</th>
+                                                <th width="10%">Contact No-1 (Office)</th>
+                                                <th width="10%">Contact No-2 (Office)</th>
                                                 <th width="5%">Email ID</th>
                                                 <th width="10%">Address (Home)</th>
                                                 <th width="10%">Address (Office)</th> 
@@ -51,8 +53,11 @@
                                                 <td width="15%"><?= $val['name']?></td>
                                                 <td width="15%"><?= $val['dept_name_hi']?></td>
                                                 <td width="10%"><?= $val['designation_name_hindi']?></td>
-                                                <td width="5%"><?= $val['cont_personal_no']?></td>
+                                                <td width="5%"><?= $val['cont_personal_no']
+                                                    ?></td>
+                                                <td width="5%"><?= $val['cont_personal_no_two']?></td>
                                                 <td width="10%"><?= $val['cont_office_no']?></td>
+                                                <td width="10%"><?= $val['cont_office_two']?></td> 
                                                 <td width="5%"><?= $val['cont_email']?></td>
                                                 <td width="10%"><?= $val['home_address']?></td>
                                                 <td width="10%"><?= $val['office_address']?></td>

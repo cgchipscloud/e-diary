@@ -157,10 +157,12 @@ class Dashboard extends MY_Controller {
         $dataApplicant['office_address'] = $_POST['office_address'];
         $dataApplicant['siting_address'] = $_POST['siting_address'];
         $dataApplicant['cont_personal_no'] = $_POST['cont_personal_no'];
+        $dataApplicant['cont_personal_no_two'] = $_POST['cont_personal_no_two'];
         $dataApplicant['designation_id'] = $_POST['designation_id'];
         $dataApplicant['department_id'] = $_POST['department_id'];
         $dataApplicant['cont_email'] = $_POST['cont_email'];
         $dataApplicant['cont_office_no'] = $_POST['cont_office_no'];
+        $dataApplicant['cont_office_two'] = $_POST['cont_office_two'];
        
          $sts= FALSE;
          $sts = $this->Dashboard_model->insert_contact_detail($dataApplicant);
@@ -182,10 +184,12 @@ class Dashboard extends MY_Controller {
         $dataApplicant['office_address'] = $_POST['office_address'];
         $dataApplicant['siting_address'] = $_POST['siting_address'];
         $dataApplicant['cont_personal_no'] = $_POST['cont_personal_no'];
+        $dataApplicant['cont_personal_no_two'] = $_POST['cont_personal_no_two'];
         $dataApplicant['designation_id'] = $_POST['designation_id'];
         $dataApplicant['department_id'] = $_POST['department_id'];
         $dataApplicant['cont_email'] = $_POST['cont_email'];
         $dataApplicant['cont_office_no'] = $_POST['cont_office_no'];
+        $dataApplicant['cont_office_two'] = $_POST['cont_office_two'];
        
          $sts= FALSE;
          $sts = $this->Dashboard_model->update_contact_detail($dataApplicant);

@@ -5,7 +5,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
 
   $id = (int)$_GET['id'];
 
-  $query = "SELECT cd.id, cd.name, cd.home_address, cd.office_address,cd.cont_personal_no_two,cd.cont_office_two, cd.siting_address, cd.cont_personal_no, cd.cont_fax, cd.constituency, cd.designation_id ,mde.designation_name_hindi,mde.designation_name_eng, cd.department_id,md.dept_name_en, md.dept_name_hi, cd.cont_email, cd.cont_office_no, cd.nigam_city, cd.district, cd.pbx, cd.vidhansabha_contact 
+  $query = "SELECT cd.id, cd.name, cd.home_address, cd.office_address,cd.cont_personal_no_two,cd.cont_office_two, cd.siting_address, cd.cont_personal_no, cd.cont_fax, cd.cont_fax_two, cd.constituency, cd.designation_id ,mde.designation_name_hindi,mde.designation_name_eng, cd.department_id,md.dept_name_en, md.dept_name_hi, cd.cont_email, cd.cont_office_no, cd.nigam_city, cd.district, cd.pbx, cd.vidhansabha_contact 
 
         FROM contact_details cd
         INNER JOIN mst_designation mde ON cd.designation_id=mde.designation_id
@@ -155,6 +155,24 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Email ID</label>
                                                 <div class="col-sm-10">
                                                     <input class="form-control" placeholder="" id="example-text-input" name="cont_email" type="Email"  value="<?php echo $data['cont_email'];?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Fax No-1</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" placeholder="" type="text" id="example-text-input" name="cont_fax" value="<?php echo $data['cont_fax'];?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Fax No-2</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" placeholder="" type="text" id="example-text-input" name="cont_fax_two" value="<?php echo $data['cont_fax_two'];?>">
                                                 </div>
                                             </div>
                                         </div>

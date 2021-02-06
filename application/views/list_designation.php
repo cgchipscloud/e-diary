@@ -29,32 +29,33 @@
                                    
                                 </div><!--end card-header-->
                                 <div class="card-body">
-                                    <table id="datatables_list" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead>
-                                        <tr>
-                                            <th>S.No.</th>
-                                            <th>Department Name (Hindi)</th>
-                                            <th>Designation Name (Hindi)</th>
-                                            <th>Designation Name (English)</th>
-                                            
-                                        </tr>
-                                        </thead>
-    
-    
-                                        <tbody>
-                                        <?php
-                                            $i = 1;
-                                                foreach($desig_data as $val){ ?>
+                                    <div class="table-responsive" style="width:1060px;">
+                                        <table id="datatables_list" class="table table-bordered wrap">
+                                            <thead>
                                             <tr>
-                                                <td><?=$i++;?></td>
-                                                <td><?= $val['dept_name_hi']?></td>
-                                                <td><?= $val['designation_name_hindi']?></td>
-                                                <td><?= $val['designation_name_eng']?></td>
+                                                <th>S.No.</th>
+                                                <th>Department Name (Hindi)</th>
+                                                <th>Designation Name (Hindi)</th>
+                                                <th>Designation Name (English)</th>
+                                                
                                             </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-    
+                                            </thead>
+        
+        
+                                            <tbody>
+                                            <?php
+                                                $i = 1;
+                                                    foreach($desig_data as $val){ ?>
+                                                <tr>
+                                                    <td><?=$i++;?></td>
+                                                    <td><?= $val['dept_name_hi']?></td>
+                                                    <td><?= $val['designation_name_hindi']?></td>
+                                                    <td><?= $val['designation_name_eng']?></td>
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div> <!-- end col -->

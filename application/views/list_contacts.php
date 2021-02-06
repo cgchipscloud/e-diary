@@ -37,6 +37,8 @@
                                                 <th width="5%">Contact No-2 (Personal)</th>
                                                 <th width="10%">Contact No-1 (Office)</th>
                                                 <th width="10%">Contact No-2 (Office)</th>
+                                                <th width="10%">Fax No-1</th>
+                                                <th width="10%">Fax No-2</th>
                                                 <th width="5%">Email ID</th>
                                                 <th width="10%">Address (Home)</th>
                                                 <th width="10%">Address (Office)</th> 
@@ -57,7 +59,9 @@
                                                     ?></td>
                                                 <td width="5%"><?= $val['cont_personal_no_two']?></td>
                                                 <td width="10%"><?= $val['cont_office_no']?></td>
-                                                <td width="10%"><?= $val['cont_office_two']?></td> 
+                                                <td width="10%"><?= $val['cont_office_two']?></td>
+                                                <td width="10%"><?= $val['cont_fax']?></td>
+                                                <td width="10%"><?= $val['cont_fax_two']?></td> 
                                                 <td width="5%"><?= $val['cont_email']?></td>
                                                 <td width="10%"><?= $val['home_address']?></td>
                                                 <td width="10%"><?= $val['office_address']?></td>

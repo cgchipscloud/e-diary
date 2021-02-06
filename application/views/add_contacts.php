@@ -133,6 +133,24 @@
                                         </div>
 
                                         <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Fax No-1</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" placeholder="" type="text" value="" id="example-text-input" name="cont_fax" type="number">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Fax No-2</label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" placeholder="" type="text" value="" id="example-text-input" name="cont_fax_two" type="number">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
                                             <div class="row">
                                                 <div class="col-sm-12 text-right">
                                                     <button type="submit" class="btn btn-primary px-4">Save</button>

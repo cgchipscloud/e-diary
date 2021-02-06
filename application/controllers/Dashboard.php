@@ -163,6 +163,8 @@ class Dashboard extends MY_Controller {
         $dataApplicant['cont_email'] = $_POST['cont_email'];
         $dataApplicant['cont_office_no'] = $_POST['cont_office_no'];
         $dataApplicant['cont_office_two'] = $_POST['cont_office_two'];
+        $dataApplicant['cont_fax'] = $_POST['cont_fax'];
+        $dataApplicant['cont_fax_two'] = $_POST['cont_fax_two'];
        
          $sts= FALSE;
          $sts = $this->Dashboard_model->insert_contact_detail($dataApplicant);
@@ -190,6 +192,8 @@ class Dashboard extends MY_Controller {
         $dataApplicant['cont_email'] = $_POST['cont_email'];
         $dataApplicant['cont_office_no'] = $_POST['cont_office_no'];
         $dataApplicant['cont_office_two'] = $_POST['cont_office_two'];
+        $dataApplicant['cont_fax'] = $_POST['cont_fax'];
+        $dataApplicant['cont_fax_two'] = $_POST['cont_fax_two'];
        
          $sts= FALSE;
          $sts = $this->Dashboard_model->update_contact_detail($dataApplicant);

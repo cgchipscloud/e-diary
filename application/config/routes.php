@@ -35,6 +35,9 @@ $route['(?i)Ediary-Insert-Contacts'] = 'Dashboard/insert_contact_details';
 $route['(?i)Ediary-Department-Designation-list'] = 'Dashboard/list_dept_desig';
 
 
+/* // API ROUTES SATRT */
+$route['(?i)API-Test'] = 'Api_login/testing';
 
-
+$route['(?i)Api-login'] = 'Api_login/Login';
+/* -- API ROUTES END */
 

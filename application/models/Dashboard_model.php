@@ -232,6 +232,56 @@ class Dashboard_model extends CI_Model
         $data = $this->db->query($getSql)->result_array();
         return $data;
     }
+
+
+    // ------------------------Insert IAS Details Start-----------------------------------------------
+
+    public function insert_ias_detail($dataApplicant){
+        $this->db->trans_begin();
+
+        $parameters = array('ias_id'=>$dataApplicant['ias_id'],
+                             'ias_name_en'=>$dataApplicant['ias_name_en'],
+                             'ias_name_hi'=>$dataApplicant['ias_name_hi'],
+                             'email_id'=>$dataApplicant['email_id'],
+                             'mobile_no'=>$dataApplicant['mobile_no'],
+                             'post_address'=>$dataApplicant['post_address'],
+                             'password'=>$dataApplicant['password'],
+                             'salt'=>$dataApplicant['salt'],
+                             'ip_address'=>$dataApplicant['system_ip']
+                             );     
+        $this->db->insert('ias_details', $parameters);
+        $last_id = $this->db->insert_id();             
+        $sts = FALSE;
+         if ($this->db->trans_status() === FALSE)
+         {
+             $this->db->trans_rollback();
+         }
+         else
+         {
+            $this->db->trans_commit();
+            $sts = TRUE;
+         }
+         return $sts;
+    }
+     // ------------------------Insert IAS Details End-----------------------------------------------
+
+    //------------------------ list IAS Deatils start--------------------------------------------
+    
+    public function list_ias_data()
+    {
+        $sql ="SELECT id, ias_id, ias_name_en, ias_name_hi, email_id, post_address, mobile_no FROM ias_details";
+        $data = $this->db->query($sql)->result_array();
+        return $data;
+    }
+
+    public function all_ias_data($iasid)
+    {
+        $sql ="SELECT id, ias_id, ias_name_en, ias_name_hi, email_id, post_address, mobile_no FROM ias_details where ias_id= ?";
+        $data = $this->db->query($sql,array($iasid))->row_array();
+        //print_r($data);exit();
+        return $data;
+    }
+    // ------------------------List IAS Details end----------------------------------------------
     
 }
 ?>

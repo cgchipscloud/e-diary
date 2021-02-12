@@ -69,19 +69,15 @@ class Api_login_model extends CI_Model
     */ 
     public function sign_in($username, $password) {
         $query_salt = "SELECT uw.salt FROM ias_details AS uw
-        WHERE uw.mobile_no = '".$username."'";
+        WHERE uw.ias_id = '".$username."'";
         $get_salt = $this->db->query($query_salt);
         $get_salt = $get_salt->result_array();
         if (!empty($get_salt)) {
             $salt = $get_salt[0]['salt'];
             $salt_password = $password . $salt;
-
-
-            /*SELECT `id`, `ias_id`, `ias_name_en`, `ias_name_hi`, `email_id`, `post_address`, `mobile_no`, `password`, `create_by`, `update_by`, `create_datetime`, `update_datetime`, `ip_address` FROM `ias_details` WHERE 1*/
-
             $hased_password = hash('SHA512', $salt_password);
             //print_r($hased_password);exit();
-            $condition = "WHERE uw.mobile_no  = '" . $username . "' AND uw.password = '" . $hased_password . "'";
+            $condition = "WHERE uw.ias_id  = '" . $username . "' AND uw.password = '" . $hased_password . "'";
             $login_sql = "SELECT uw.id, uw.ias_id, uw.ias_name_en, uw.ias_name_hi, uw.email_id,uw.is_active, uw.post_address, uw.mobile_no
                           FROM ias_details AS uw
                            ". $condition ;
@@ -126,11 +122,132 @@ class Api_login_model extends CI_Model
         }
         return $result_data;
     }
-    /*
-        -- Login Method End
-    */ 
+   
+// ---------------------------------IAS ID Check start----------------------------------------
+    public function api_user_id_check($ias_id) {
+   
+        $query = "SELECT COUNT(ias_id) AS ias_count,ias_id FROM ias_details WHERE ias_id = '".$ias_id."'";
+            
+        $result = $this->db->query($query);
+    //echo $this->db->last_query();exit;
+        $row = $result->result_array();
+        return $row;
+    }
+// ---------------------------------IAS ID Check end----------------------------------------
+
+// ---------------------IAS ID & Mobile Number Check Start----------------------------------------
+
+    public function api_user_check($ias_id,$mobile) {
+   
+        $query = "SELECT COUNT(mobile_no) AS mcount,mobile_no,ias_id FROM ias_details WHERE ias_id = '".$ias_id."' AND mobile_no= '".$mobile."'";
+            
+        $result = $this->db->query($query);
+    //echo $this->db->last_query();exit;
+        $row = $result->result_array();
+        return $row;
+    }
+
+// ---------------------IAS ID & Mobile Number Check End----------------------------------------
 
 
+// ---------------------Mobile Number Insert Start----------------------------------------
+
+    public function insert_mobile($user_ka_mobile,$ias_id) {
+        
+        $data=array('mobile'=>$user_ka_mobile,'ias_id'=> $ias_id);
+        $result = $this->db->insert('mobile_otp_list', $data);
+
+        if($result>0){
+            $returnData['status'] = TRUE;
+            $returnData['message'] = "Mobile Number Matched Successfully:- " . $user_ka_mobile;
+            $returnData['mobile'] = $user_ka_mobile;
+            $returnData['ias_id'] = $ias_id;
+        }else {
+            $returnData['status'] = FALSE;
+            $returnData['message'] = "Mobile Number Could Not be Matched";
+        }
+        return $returnData;
+    }
+// ---------------------Mobile Number Insert End----------------------------------------
+
+
+// ---------------------IAS ID & Mobile Number Insert Start----------------------------------------
+
+    public function insert_mobile_otp($otp, $user_ka_mobile,$ias_id) {
+
+        $sql = $this->db->select('mobile_no')->WHERE('ias_id',$ias_id)->from('ias_details');
+        $res = $this->db->get()->result_array();
+        if(!empty($res[0]['mobile_no'])){
+            $data=array('otp_number'=>$otp,'mobile'=>$user_ka_mobile,'ias_id'=> $ias_id);
+            $result = $this->db->insert('mobile_otp_list', $data);
+            if($result>0){
+                sms($user_ka_mobile, "Your OTP to Login into CG-eDiary Mobile  APP is : " . $otp);
+                $returnData['status'] = TRUE;
+                $returnData['message'] = "OTP Sent Successfully to Mobile Number :- " . $user_ka_mobile;
+                $returnData['otp'] = $otp;
+                $returnData['mobile'] = $user_ka_mobile;
+                $returnData['ias_id'] = $ias_id;
+            }else {
+                $returnData['status'] = FALSE;
+                $returnData['message'] = "OTP Could Not be Sent";
+            }
+        }else {
+            $res = $this->db->where('ias_id',$ias_id)->update('ias_details',array('mobile_no'=>$user_ka_mobile));
+            //echo  $this->db->last_query();exit;
+            if($res > 0){
+                $data=array('otp_number'=>$otp,'mobile'=>$user_ka_mobile,'ias_id'=> $ias_id);
+                $result = $this->db->insert('mobile_otp_list', $data);
+                if($result>0){
+                    sms($user_ka_mobile, "Your OTP to Login into CG-eDiary Mobile  APP is : " . $otp);
+                    $returnData['status'] = TRUE;
+                    $returnData['message'] = "OTP Sent Successfully to Mobile Number :- " . $user_ka_mobile;
+                    $returnData['otp'] = $otp;
+                    $returnData['mobile'] = $user_ka_mobile;
+                    $returnData['ias_id'] = $ias_id;
+                }else {
+                    $returnData['status'] = FALSE;
+                    $returnData['message'] = "OTP Could Not be Sent";
+                }
+            }else {
+                $returnData['status'] = FALSE;
+                $returnData['message'] = "Mobile Number Could Not be Added at this time";
+            }
+        }
+        return $returnData;
+    }
+// ---------------------IAS ID & Mobile Number Insert End----------------------------------------
+
+// ---------------------IAS ID & Mobile Number and OTP Check Start----------------------------------------
+
+    public function api_user_mobile_otp_id($ias_id,$mobile,$otp) {
+   
+        $query = "SELECT COUNT(mobile) AS mcount,mobile,ias_id,otp_number FROM mobile_otp_list WHERE ias_id = '".$ias_id."' AND mobile= '".$mobile."' AND otp_number= '".$otp."' ";       
+        $result = $this->db->query($query);
+        $row = $result->result_array();
+        //print_r($row);exit();
+
+        if($row>0){
+            $sql = "SELECT uw.id, uw.ias_id, uw.ias_name_en, uw.ias_name_hi, uw.email_id,uw.is_active, uw.post_address, uw.mobile_no
+                          FROM ias_details AS uw where uw.ias_id ='".$ias_id."'
+                           ";
+                    $resultData = $this->db->query($sql);
+                    $data = $resultData->result_array();
+                    $token = $this->getToken(64);
+                    //print_r($data);exit();
+                    $returnData['status'] = TRUE;
+                    $returnData['token'] = $token;
+                    $returnData['otp_number'] = $otp;
+                    $returnData['iasdata'] = $data;
+                    $returnData['message'] = "Your Data Matched Successfully";
+                    
+            }else {
+                $returnData['status'] = FALSE;
+                $returnData['message'] = "Your Data Could Not be Matched";
+            }
+        return $returnData;
+    }
+
+// ---------------------IAS ID & Mobile Number Check End----------------------------------------
 
 }
 ?>

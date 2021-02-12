@@ -62,6 +62,13 @@ class Dashboard extends MY_Controller {
         $this->render_view('add_contacts', $data);
     }
 
+
+     public function add_ias_details() 
+    {
+        $data['title']="E-Dairy";
+        $this->render_view('add_ias_details', $data);
+    }
+
     public function ajax_desig_list()
     {
 
@@ -233,5 +240,102 @@ class Dashboard extends MY_Controller {
             $this->render_view('desig_dept_tree_list', $data);
         }
     // test function end
+
+     function crypto_rand_secure($min, $max)
+    {
+        $range = $max - $min;
+        if ($range < 1) return $min; // not so random...
+        $log = ceil(log($range, 2));
+        $bytes = (int) ($log / 8) + 1; // length in bytes
+        $bits = (int) $log + 1; // length in bits
+        $filter = (int) (1 << $bits) - 1; // set all lower bits to 1
+        do {
+            $rnd = hexdec(bin2hex(openssl_random_pseudo_bytes($bytes)));
+            $rnd = $rnd & $filter; // discard irrelevant bits
+        } while ($rnd > $range);
+        return $min + $rnd;
+    }
+
+    function getToken($length)
+    {
+        $token = "";
+        $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        $codeAlphabet.= "abcdefghijklmnopqrstuvwxyz";
+        $codeAlphabet.= "0123456789";
+        $max = strlen($codeAlphabet); // edited
+
+        for ($i=0; $i < $length; $i++) {
+            $token .= $codeAlphabet[$this->crypto_rand_secure(0, $max-1)];
+        }
+
+        return  $token;
+    }
+
+    public function user_sha512_get($password)
+    {
+        //$password = $this->get('password');
+        //$password = '12345';
+        $front_end = $this->config->item('encryption_key');
+        $salt_password_first = $front_end.trim($password).$front_end;
+        //echo $front_end;
+        $hased_password_first = hash('SHA512', $salt_password_first);
+        return $hased_password_first;
+    }
+
+     //insert ias data start
+    
+    public function insert_ias_details(){
+
+        $dataApplicant['ias_id'] = $_POST['ias_id'];
+        $dataApplicant['ias_name_en'] = $_POST['ias_name_en'];
+        $dataApplicant['ias_name_hi'] = $_POST['ias_name_hi'];
+        $dataApplicant['email_id'] = $_POST['email_id'];
+        $dataApplicant['mobile_no'] = $_POST['mobile_no'];
+        $dataApplicant['post_address'] = $_POST['post_address'];
+
+        $password = $this->user_sha512_get($dataApplicant['mobile_no']);
+        $salt = $this->getToken(7);
+        $salt_password = $password.$salt;
+        $hased_password = hash('SHA512', $salt_password);
+        $dataApplicant['password'] =$hased_password;
+        $dataApplicant['salt'] =$salt; 
+        $dataApplicant['system_ip'] = $_SERVER['SERVER_ADDR'];
+        $sts= FALSE;
+        $sts = $this->Dashboard_model->insert_ias_detail($dataApplicant);
+            if($sts){
+                echo"<script>alert('IAS Details Inserted succesfully..')</script>";
+         
+            }else{
+                echo"<script>alert('Try Again.');</script>";
+            }
+                echo"<script>location.replace(document.referrer);</script>";
+        } 
+    // insert ias data end
+
+    //---------------list IAS data start------------------------------- 
+
+    public function list_IAS() 
+    {
+        $data['title']="E-Dairy";
+        $data['ias_data'] = $this->Dashboard_model->list_ias_data();
+        $this->render_view('list_ias', $data);
+    }
+
+    //---------------list IAS data end------------------------------- 
+
+    //---------------Update IAS data Start------------------------------- 
+
+    public function edit_ias() 
+    {
+        $data['title']="E-Dairy";
+        if(isset($_GET['ias_id']) && !empty($_GET['ias_id']))
+        {
+          $iasid = $_GET['ias_id'];
+          $data['iasdata'] = $this->Dashboard_model->all_ias_data($iasid);
+        }
+        $this->render_view('update_ias_officer', $data);
+    }
+
+    //---------------Update IAS data end------------------------------- 
 
 }

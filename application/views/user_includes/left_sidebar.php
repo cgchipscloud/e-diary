@@ -12,8 +12,8 @@
                 <li class="menu-label mt-0">Transaction</li>
                 <li><a href="<?=base_url('Ediary-Add-Contacts')?>"> <i data-feather=users class="align-self-center menu-icon"></i><span>Contacts</span></a></li>
 
-                <!-- <li><a href="<?=base_url('Ediary-Edit-Contacts')?>"> <i data-feather=align-justify class="align-self-center menu-icon"></i><span>Edit-Contacts</span></a></li>
-                <hr class="hr-dashed hr-menu"> -->
+                <li><a href="<?=base_url('Ediary-Add-IAS')?>"> <i data-feather=users class="align-self-center menu-icon"></i><span>Add-IAS-Officer</span></a></li>
+                <hr class="hr-dashed hr-menu">
 
                 <li class="menu-label my-2">Master</li>
 

@@ -328,14 +328,42 @@ class Dashboard extends MY_Controller {
     public function edit_ias() 
     {
         $data['title']="E-Dairy";
-        if(isset($_GET['ias_id']) && !empty($_GET['ias_id']))
+        if(isset($_GET['id']) && !empty($_GET['id']))
         {
-          $iasid = $_GET['ias_id'];
-          $data['iasdata'] = $this->Dashboard_model->all_ias_data($iasid);
+          $id = $_GET['id'];
+          $data['idata'] = $this->Dashboard_model->all_ias_data($id);
         }
         $this->render_view('update_ias_officer', $data);
     }
 
     //---------------Update IAS data end------------------------------- 
+
+
+    // ---------------------------------------------------------
+
+    // update contact details start
+    public function update_ias_details(){
+        $dataApplicant['id'] = $_POST['id'];
+        $dataApplicant['ias_id'] = $_POST['ias_id'];
+        $dataApplicant['ias_name_en'] = $_POST['ias_name_en'];
+        $dataApplicant['ias_name_hi'] = $_POST['ias_name_hi'];
+        $dataApplicant['email_id'] = $_POST['email_id'];
+        $dataApplicant['mobile_no'] = $_POST['mobile_no'];
+        $dataApplicant['post_address'] = $_POST['post_address'];
+       
+         $sts= FALSE;
+         $sts = $this->Dashboard_model->update_ias_detail($dataApplicant);
+            if($sts){
+                echo"<script>alert('IAS Details Updated Successfully..')</script>";
+            }
+            else{
+             echo"<script>alert('Try Again.');</script>";
+            }
+            redirect(base_url('Ediary-List-IAS'), "refresh");
+        } 
+    //update contact details end
+
+    // ---------------------------------------------------------
+
 
 }

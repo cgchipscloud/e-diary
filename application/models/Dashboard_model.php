@@ -64,7 +64,7 @@ class Dashboard_model extends CI_Model
 
     public function list_contact_data()
     {
-          $sql ="SELECT cd.id, cd.name, cd.home_address, cd.office_address, cd.siting_address, cd.cont_personal_no,cd.cont_personal_no_two, cd.cont_fax, cd.cont_fax_two, cd.constituency, cd.designation_id ,mde.designation_name_hindi,mde.designation_name_eng, cd.department_id,md.dept_name_en, md.dept_name_hi, cd.cont_email, cd.cont_office_no,cd.cont_office_two, cd.nigam_city, cd.district, cd.pbx, cd.vidhansabha_contact 
+        $sql ="SELECT cd.id, cd.name, cd.home_address, cd.office_address, cd.siting_address, cd.cont_personal_no,cd.cont_personal_no_two, cd.cont_fax, cd.cont_fax_two, cd.constituency, cd.designation_id ,mde.designation_name_hindi,mde.designation_name_eng, cd.department_id,md.dept_name_en, md.dept_name_hi, cd.cont_email, cd.cont_office_no,cd.cont_office_two, cd.nigam_city, cd.district, cd.pbx, cd.vidhansabha_contact 
 
           FROM contact_details cd
           INNER JOIN mst_designation mde ON cd.designation_id=mde.designation_id
@@ -214,18 +214,6 @@ class Dashboard_model extends CI_Model
         return $data;
     }
 
-    // public function get_designation(){
-
-    //     $getSql = "SELECT designation_id,designation_name_eng, designation_name_hindi FROM mst_designation";
-    //     $data = $this->db->query($getSql)->result_array();
-    //     return $data;
-    // }
-
-    // public function get_designation($dept_id){
-    //     $getSql="SELECT designation_id,designation_name_eng,department_id, designation_name_hindi FROM mst_designation where department_id =".$dept_id;
-    //     $data = $this->db->query($getSql)->result_array();
-    //     return $data;
-    // }
 
     public function get_designation($dept_id){
         $getSql="SELECT designation_id,designation_name_eng, designation_name_hindi FROM mst_designation where department_id =".$dept_id;
@@ -263,7 +251,7 @@ class Dashboard_model extends CI_Model
          }
          return $sts;
     }
-     // ------------------------Insert IAS Details End-----------------------------------------------
+     // ------------------Insert IAS Details End-----------------------------------------------
 
     //------------------------ list IAS Deatils start--------------------------------------------
     
@@ -282,6 +270,49 @@ class Dashboard_model extends CI_Model
         return $data;
     }
     // ------------------------List IAS Details end----------------------------------------------
+
+
+    // ------------------------Update IAS Details Start-------------------------------------------
+
+    public function update_ias_detail($dataApplicant){
+        $this->db->trans_begin();
+        $sid = $dataApplicant['id'];
+        $parameters = array('ias_name_en'=>$dataApplicant['ias_name_en'],
+                             'ias_name_hi'=>$dataApplicant['ias_name_hi'],
+                             'email_id'=>$dataApplicant['email_id'],
+                             'mobile_no'=>$dataApplicant['mobile_no'],
+                             'post_address'=>$dataApplicant['post_address']
+                             ); 
+        $this->db->where('id', $sid);                        
+        $this->db->update('ias_details', $parameters);
+        $last_id = $this->db->insert_id();         
+        $sts = FALSE;
+         if ($this->db->trans_status() === FALSE)
+         {
+             $this->db->trans_rollback();
+         }
+         else
+         {
+            $this->db->trans_commit();
+            $sts = TRUE;
+         }
+         return $sts;
+    }
+
+
+    // ------------------------Update IAS Details End-------------------------------
     
+    // public function get_designation(){
+
+    //     $getSql = "SELECT designation_id,designation_name_eng, designation_name_hindi FROM mst_designation";
+    //     $data = $this->db->query($getSql)->result_array();
+    //     return $data;
+    // }
+
+    // public function get_designation($dept_id){
+    //     $getSql="SELECT designation_id,designation_name_eng,department_id, designation_name_hindi FROM mst_designation where department_id =".$dept_id;
+    //     $data = $this->db->query($getSql)->result_array();
+    //     return $data;
+    // }
 }
 ?>

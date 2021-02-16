@@ -50,9 +50,10 @@
                                                 <td width="10%"><?= $val['ias_name_hi']?></td>
                                                 <td width="5%"><?= $val['email_id']
                                                     ?></td>
-                                                <td width="5%"><?= $val['post_address']?></td>
                                                 <td width="10%"><?= $val['mobile_no']?></td>
-                                                <td width="5%"><a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Edit-IAS-Officer')?>?id=<?=$val['ias_id']?>">Update</a></td>
+                                                <td width="5%"><?= $val['post_address']?></td>
+                                                
+                                                <td width="5%"><a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Edit-IAS-Officer')?>?id=<?=$val['id']?>">Update</a></td>
                                             </tr>
                                             <?php } ?>
                                         </tbody>

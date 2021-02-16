@@ -42,6 +42,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                     <div class="row">
 
                                         <input type="hidden" name="id" id="id" value="<?php echo $data['id'];?>">
+                                        
                                         <div class="col-lg-12">
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-2 col-form-label text-right">Department Name</label>

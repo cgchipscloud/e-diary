@@ -31,6 +31,7 @@ $route['(?i)Ediary-Edit-IAS-Officer'] = 'Dashboard/edit_ias';
 
 // update
 $route['(?i)Ediary-Update-Contacts'] = 'Dashboard/update_contact_details';
+$route['(?i)Ediary-Update-IAS-Details'] = 'Dashboard/update_ias_details';
 
 
 // insert

@@ -150,8 +150,21 @@ class Api_login extends RestController {
                 }
             }
     }
-    // -------------------------------Check OTP, Mobile,IAS ID End-----------------------------------
+    // ------------------------Check OTP, Mobile,IAS ID End-----------------------------------
+ 
 
+ // ------------------------get Contacts Details start--------------------------
+
+    public function Contacts_get(){
+
+        $this->response( [  
+                        'status' => RestController::HTTP_OK,              
+                        'message' => '',
+                        'data' => $this->Api_login_model->getCompleteContactDetails()
+                    ], RestController::HTTP_OK );
+    }
+
+// ------------------------get Contacts Details end--------------------------
 
 
     public function testing_get() {

@@ -50,6 +50,8 @@ $route['(?i)API-send-otp'] = 'Api_login/sendOTP';
 
 $route['(?i)API-login-Check'] = 'Api_login/checkUserData';
 
+$route['(?i)API-contact-Details']='Api_login/Contacts';
+
 
 
 

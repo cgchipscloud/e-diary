@@ -172,12 +172,15 @@ class Api_login_model extends CI_Model
 
 
 // ---------------------IAS ID & Mobile Number Insert Start----------------------------------------
-
-    public function insert_mobile_otp($otp, $user_ka_mobile,$ias_id) {
-
+    public function updatePerviousOTP($mobile_number, $ias_id){
+        $sql = "UPDATE mobile_otp_list SET is_expired = 1 WHERE ias_id = $ias_id AND mobile = $mobile_number";
+        $this->db->query($sql);
+    }
+    public function insert_mobile_otp($otp, $user_ka_mobile, $ias_id) {
+        $this->updatePerviousOTP($user_ka_mobile, $ias_id);
         $sql = $this->db->select('mobile_no')->WHERE('ias_id',$ias_id)->from('ias_details');
         $res = $this->db->get()->result_array();
-        if(!empty($res[0]['mobile_no'])){
+        if(!empty($res[0]['mobile_no'])){            
             $data=array('otp_number'=>$otp,'mobile'=>$user_ka_mobile,'ias_id'=> $ias_id);
             $result = $this->db->insert('mobile_otp_list', $data);
             if($result>0){
@@ -221,12 +224,10 @@ class Api_login_model extends CI_Model
 
     public function api_user_mobile_otp_id($ias_id,$mobile,$otp) {
    
-        $query = "SELECT COUNT(mobile) AS mcount,mobile,ias_id,otp_number FROM mobile_otp_list WHERE ias_id = '".$ias_id."' AND mobile= '".$mobile."' AND otp_number= '".$otp."' ";       
+        $query = "SELECT mobile,ias_id,otp_number FROM mobile_otp_list WHERE ias_id = '".$ias_id."' AND mobile= '".$mobile."' AND otp_number= '".$otp."' AND is_expired = 0";       
         $result = $this->db->query($query);
-        $row = $result->result_array();
-        //print_r($row);exit();
-
-        if($row>0){
+        $row = $result->row_array();
+        if(!empty($row)){
             $sql = "SELECT uw.id, uw.ias_id, uw.ias_name_en, uw.ias_name_hi, uw.email_id,uw.is_active, uw.post_address, uw.mobile_no
                           FROM ias_details AS uw where uw.ias_id ='".$ias_id."'
                            ";
@@ -239,7 +240,7 @@ class Api_login_model extends CI_Model
                     $returnData['otp_number'] = $otp;
                     $returnData['iasdata'] = $data;
                     $returnData['message'] = "Your Data Matched Successfully";
-                    
+            $this->updatePerviousOTP($mobile, $ias_id);        
             }else {
                 $returnData['status'] = FALSE;
                 $returnData['message'] = "Your Data Could Not be Matched";
@@ -248,6 +249,72 @@ class Api_login_model extends CI_Model
     }
 
 // ---------------------IAS ID & Mobile Number Check End----------------------------------------
+
+// -----------------------List Contacts Start------------------------------------------
+
+
+// -----------------------List Contacts End--------------------------------------------
+public function getDeptCategoryList(){
+
+    $sql="SELECT `category_id`, `category_name_eng`, `category_name_hin` FROM `mst_dept_category` ORDER by sequence";
+    return $this->db->query($sql)->result_array();
+}
+
+public function getDeptList($category_id){
+
+    // $sql="SELECT `dept_id`, `dept_name_hi`, `dept_name_en` FROM `mst_department`";
+    // $parameter=array();
+    // if($category_id==0){
+
+    //    $sql.=" ORDER by order_id";
+    // }
+    // else{
+    //     $sql.= " WHERE fk_dept_category_id= ? ORDER by order_id";
+    //     $parameter[0]=$category_id;
+    // }
+
+    //alternate code
+    $parameter=array();
+    $condition = "";
+    if($category_id>0){
+        $condition = " WHERE fk_dept_category_id = ?";
+        array_push($parameter,$category_id);   
+    }
+    $sql = "SELECT `dept_id`, `dept_name_hi`, `dept_name_en` FROM `mst_department` $condition ORDER BY order_id";
+    return $this->db->query($sql,$parameter)->result_array();
+}
+
+public function getContacts($dept_id){
+    $parameter=array();
+    $condition="";
+    if ($dept_id>0) {
+        $condition="WHERE cd.department_id=?";
+        array_push($parameter, $dept_id);        
+    }
+    $sql="SELECT cd.name, cd.home_address, cd.office_address, cd.siting_address, cd.cont_personal_no  ,cd.cont_fax,mde.designation_name_hindi,cd.cont_email, cd.cont_office_no
+            FROM contact_details cd
+            INNER JOIN mst_designation mde ON cd.designation_id=mde.designation_id $condition";
+    return $this->db->query($sql,$parameter)->result_array();
+
+}
+
+public function getCompleteContactDetails(){
+    $returnData=array();
+
+    foreach ($this->getDeptCategoryList() as $cat) {
+        $data=array();
+        $data["title"]=$cat["category_name_eng"];
+        $data["subTitles"]=array();
+        foreach ($this->getDeptList($cat["category_id"]) as $dept) {
+            $dept_data=array();
+            $dept_data["dept_name_hi"]=$dept["dept_name_hi"];
+            $dept_data["contacts"]=$this->getContacts($dept["dept_id"]);
+            array_push($data["subTitles"],$dept_data);     
+        }
+        array_push($returnData, $data);
+    }
+    return $returnData;
+}
 
 }
 ?>

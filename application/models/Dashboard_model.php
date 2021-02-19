@@ -40,7 +40,9 @@ class Dashboard_model extends CI_Model
     // ------------------------------department data show start-------------------
     public function list_department_data()
     {
-        $sql ="SELECT dept_id, dept_name_en,order_id, dept_name_hi FROM mst_department ORDER by order_id ASC";
+        $sql ="SELECT d.dept_id, d.fk_dept_category_id,mdept.category_name_eng, d.dept_name_en, 
+               d.order_id, d.dept_name_hi FROM mst_department d
+               LEFT JOIN mst_dept_category mdept on d.fk_dept_category_id=mdept.sequence";
         $data = $this->db->query($sql)->result_array();
         return $data;
 
@@ -88,7 +90,8 @@ class Dashboard_model extends CI_Model
 
     public function insert_department_detail($dataApplicant){
         $this->db->trans_begin();  
-        $parameters = array('dept_name_hi'=>$dataApplicant['dept_hindi_name'],
+        $parameters = array('fk_dept_category_id'=>$dataApplicant['fk_dept_category_id'],
+                             'dept_name_hi'=>$dataApplicant['dept_hindi_name'],
                              'dept_name_en'=>$dataApplicant['dept_eng_name'], 
                              'added_ip'=>$dataApplicant['system_ip']);     
         $this->db->insert('mst_department', $parameters);
@@ -222,7 +225,7 @@ class Dashboard_model extends CI_Model
     }
 
 
-    // ------------------------Insert IAS Details Start-----------------------------------------------
+    // ---------------Insert IAS Details Start-----------------------------------------------
 
     public function insert_ias_detail($dataApplicant){
         $this->db->trans_begin();
@@ -314,5 +317,89 @@ class Dashboard_model extends CI_Model
     //     $data = $this->db->query($getSql)->result_array();
     //     return $data;
     // }
+
+
+    //------------------insert department category data start------------------------------
+
+    public function insert_department_category_detail($dataApplicant){
+        $this->db->trans_begin();  
+        $parameters = array('sequence'=>$dataApplicant['sequence'],
+                            'category_name_eng'=>$dataApplicant['category_name_eng'], 
+                            'category_name_hin'=>$dataApplicant['category_name_hin']);     
+        $this->db->insert('mst_dept_category', $parameters);
+        $last_id = $this->db->insert_id();             
+        $sts = FALSE;
+         if ($this->db->trans_status() === FALSE)
+         {
+             $this->db->trans_rollback();
+         }
+         else
+         {
+            $this->db->trans_commit();
+            $sts = TRUE;
+         }
+         return $sts;
+    }
+
+    //-----------------------------insert department category data end------------------------------
+
+
+    // -----------------------list department category start-----------------------
+
+    public function get_department_category(){
+
+        $getSql = "SELECT `category_id`, `category_name_eng`, `sequence`, `category_name_hin` FROM `mst_dept_category`";
+        $data = $this->db->query($getSql)->result_array();
+        return $data;
+    }
+
+
+
+    // -----------------------List Department category end-------------------------
+
+    // -----------------------List Department start-------------------------
+    
+    public function all_dept_list($dept_id){
+
+        $query = "SELECT d.dept_id, d.fk_dept_category_id,mdept.category_name_eng, d.dept_name_en, 
+                    d.order_id, d.dept_name_hi FROM mst_department d
+                 LEFT JOIN mst_dept_category mdept on d.fk_dept_category_id=mdept.sequence where d.dept_id=" .$dept_id;
+         $data= $this->db->query($query,array($dept_id))->row_array();
+         return $data;
+   }
+
+    // -----------------------List Department end-------------------------
+
+   // -----------------------update department data start------------------
+
+    public function update_department_detail($dataApplicant){
+        $this->db->trans_begin();
+
+        //print_r($dataApplicant);exit();
+        $dept_id = $dataApplicant['dept_id'];
+        $parameters = array('fk_dept_category_id'=>$dataApplicant['fk_dept_category_id'],
+                             'dept_name_hi'=>$dataApplicant['dept_name_hi'],
+                             'dept_name_en'=>$dataApplicant['dept_name_en'],
+                             'added_ip'=>$dataApplicant['system_ip']
+                             ); 
+        $this->db->where('dept_id', $dept_id);                        
+        $this->db->update('mst_department', $parameters);
+        $last_id = $this->db->insert_id();         
+        $sts = FALSE;
+         if ($this->db->trans_status() === FALSE)
+         {
+             $this->db->trans_rollback();
+         }
+         else
+         {
+            $this->db->trans_commit();
+            $sts = TRUE;
+         }
+         return $sts;
+    }
+
+
+   // ----------------------update department data end---------------------
+
 }
 ?>

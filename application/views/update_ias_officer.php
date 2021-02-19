@@ -43,7 +43,7 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-2 col-form-label text-right">IAS ID</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" id="example-text-input" name="ias_id" type="text" required="" value="<?php echo $data['ias_id'];?>" readonly>
+                                                    <input class="form-control" id="example-text-input" name="ias_id" type="text" required="" value="<?php echo $data['ias_id'];?>">
                                                 </div>
                                             </div>
                                         </div>

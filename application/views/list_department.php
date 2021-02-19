@@ -28,30 +28,40 @@
                                    
                                 </div><!--end card-header-->
                                 <div class="card-body">
-                                    <table id="datatables_list" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-                                        <thead>
-                                        <tr>
-                                            <th>S.No.</th>
-                                            <th>Department Name (Hindi)</th>
-                                            <th>Department Name (English)</th>
-                                            
-                                        </tr>
-                                        </thead>
-    
-    
-                                        <tbody>
-                                            <?php
-                                                $i = 1;
-                                                foreach($dept_data as $val){ ?>
+                                    <div class="table-responsive" style="width:1060px;">
+                                        <table id="datatables_list" class="table table-bordered dt-responsive nowrap">
+                                            <thead>
                                             <tr>
-                                                <td><?=$i++;?></td>
-                                                <td><?= $val['dept_name_hi']?></td>
-                                                <td><?= $val['dept_name_en']?></td>
+                                                <th>S.No.</th>
+                                                <th>Department Category Sequence No</th>
+                                                <th>Department Category Name (English)</th>
+                                                <th>Department Name (Hindi)</th>
+                                                <th>Department Name (English)</th>
+                                                <th>Action</th>
+                                                
+
                                             </tr>
-                                            <?php } ?>
-                                        </tbody>
-                                    </table>
-    
+                                            </thead>
+        
+        
+                                            <tbody>
+                                                <?php
+                                                    $i = 1;
+                                                    foreach($dept_data as $val){ ?>
+                                                <tr>
+                                                    <td><?=$i++;?></td>
+                                                    <td><?= $val['fk_dept_category_id']?></td>
+                                                    <td><?= $val['category_name_eng']?></td>
+                                                    <td><?= $val['dept_name_hi']?></td>
+                                                    <td><?= $val['dept_name_en']?></td>
+                                                    <td><a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Edit-department')?>?dept_id=<?=$val['dept_id']?>">Update</a></td>
+
+                                                </tr>
+                                                <?php } ?>
+                                            </tbody>
+                                        </table>
+                                    </div>
+        
                                 </div>
                             </div>
                         </div> <!-- end col -->

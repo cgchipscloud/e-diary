@@ -17,12 +17,12 @@
         <div class="row d-flex justify-content-center">
             <div class="col-12 align-self-center">
                 <div class=row>
-                    <div class="col-lg-5 mx-auto">
+                    <div class="col-lg-5 mx-auto mt-4">
                         <div class=card>
                             <div class="card-body p-0 auth-header-box">
                                 <div class="text-center p-3">
                                     <a href=# class="logo logo-admin">
-                                        <img src=assets/images/logo-sm-dark.png height=50 alt=logo class=auth-logo>
+                                        <img src=assets/images/logo-sm.png height=50 alt=logo class=auth-logo>
                                     </a>
                                     <h4 class="mt-3 mb-1 font-weight-semibold text-white font-18">CG - eDiary</h4>
                                     <p class="text-muted mb-0">Sign in to manage contents.</p>

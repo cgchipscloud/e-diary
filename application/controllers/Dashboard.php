@@ -35,6 +35,7 @@ class Dashboard extends MY_Controller {
     public function add_departments() 
     {
         $data['title']="E-Dairy";
+        $data['dept_cate'] = $this->Dashboard_model->get_department_category();
         $this->render_view('add_department', $data);
     }
 
@@ -119,6 +120,7 @@ class Dashboard extends MY_Controller {
 
     public function insert_department(){
 
+        $dataApplicant['fk_dept_category_id']=$_POST['fk_dept_category_id'];
         $dataApplicant['dept_hindi_name'] = $_POST['dept_hindi_name'];
         $dataApplicant['dept_eng_name'] = $_POST['dept_eng_name'];
         $dataApplicant['system_ip'] = $_SERVER['SERVER_ADDR'];
@@ -363,7 +365,86 @@ class Dashboard extends MY_Controller {
         } 
     //update contact details end
 
-    // ---------------------------------------------------------
+    // ------------------Add Department Category Start-----------------------------
+
+    public function add_departments_category() 
+    {
+        $data['title']="E-Dairy";
+        $this->render_view('department_category', $data);
+    }
+
+// ------------------Add Department Category End-----------------------------
+
+
+// ------------------List Department Category Start-----------------------------
+
+    public function list_departments_category() 
+    {
+        $data['title']="E-Dairy";
+        $data['dept_category'] = $this->Dashboard_model->get_department_category();
+        $this->render_view('list_department_category', $data);
+    }
+
+// ------------------List Department Category End-----------------------------
+
+// -----------------Insert department Category start-------------------------
+
+    public function insert_add_departments_category(){
+
+        $dataApplicant['sequence'] = $_POST['sequence'];
+        $dataApplicant['category_name_eng'] = $_POST['category_name_eng'];
+        $dataApplicant['category_name_hin'] = $_POST['category_name_hin'];
+         $sts= FALSE;
+         $sts = $this->Dashboard_model->insert_department_category_detail($dataApplicant);
+            if($sts){
+                echo"<script>alert('department Category Inserted succesfully..')</script>";
+         
+            }else{
+                echo"<script>alert('Try Again.');</script>";
+            }
+                echo"<script>location.replace(document.referrer);</script>";
+        } 
+   // -----------------Insert department Category end-------------------------
+
+  // ------------------edit department details start-------------------------------
+    
+    public function edit_department() 
+    {
+        $data['title']="E-Dairy";
+
+        $data['dept_category'] = $this->Dashboard_model->get_department_category();
+        if(isset($_GET['dept_id']) && !empty($_GET['dept_id']))
+        {
+          $dept_id = $_GET['dept_id'];
+          $data['deptdata'] = $this->Dashboard_model->all_dept_list($dept_id);
+        }
+        $this->render_view('update_department', $data);
+    }
+ // ------------------edit department details end-------------------------------
+
+// -------------------update department start-----------------------------------
+
+     public function update_deaprtment_details(){
+        $dataApplicant['dept_id'] = $_POST['dept_id'];
+        $dataApplicant['fk_dept_category_id'] = $_POST['fk_dept_category_id'];
+        $dataApplicant['dept_name_hi'] = $_POST['dept_name_hi'];
+        $dataApplicant['dept_name_en'] = $_POST['dept_name_en'];
+        $dataApplicant['system_ip'] = $_SERVER['SERVER_ADDR'];
+       
+         $sts= FALSE;
+         $sts = $this->Dashboard_model->update_department_detail($dataApplicant);
+            if($sts){
+                echo"<script>alert('Department Details Updated Successfully..')</script>";
+            }
+            else{
+             echo"<script>alert('Try Again.');</script>";
+            }
+            redirect(base_url('Ediary-List-Department'), "refresh");
+        } 
+
+
+// -------------------update department end-----------------------------------
+
 
 
 }

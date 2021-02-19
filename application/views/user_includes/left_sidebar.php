@@ -23,9 +23,9 @@
 
                 <li><a href="<?=base_url('Ediary-Add-Designation')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>Add-Designation</span></a></li>
 
-               <!--  <li><a href="<?=base_url('Ediary-List-Department')?>"><i data-feather=align-justify class="align-self-center menu-icon"></i><span>List-Department</span></a></li>
+                <li><a href="<?=base_url('Ediary-Add-Daepartment-Category')?>"><i data-feather=align-justify class="align-self-center menu-icon"></i><span>Add-Department-Category</span></a></li>
 
-                <li><a href="<?=base_url('Ediary-List-Designation')?>"><i data-feather=align-justify class="align-self-center menu-icon"></i><span>List-Designation</span></a></li> -->
+                <li><a href="<?=base_url('Ediary-List-Designation')?>"><i data-feather=align-justify class="align-self-center menu-icon"></i><span>List-Designation</span></a></li>
 
                 <li><a href="<?=base_url('Ediary-Department-Designation-list')?>"><i data-feather=award class="align-self-center menu-icon"></i><span>Dept-Designation-list</span></a></li>
             </ul>

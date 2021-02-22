@@ -53,7 +53,7 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Department Name(English)</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="Department Name write in English" type="text" value="" id="example-text-input" name="designation_name_hindi" type="text" required="">
+                                                    <input class="form-control" placeholder="Department Name write in English" type="text" value="" id="example-text-input" name="designation_name_hindi">
                                                 </div>
                                             </div>
                                         </div>

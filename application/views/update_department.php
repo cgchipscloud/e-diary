@@ -71,7 +71,7 @@ left join mst_dept_category mdept on d.fk_dept_category_id= mdept.sequence where
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-3 col-form-label text-right">Department Name(English)</label>
                                                 <div class="col-sm-9">
-                                                    <input class="form-control" placeholder="Department Name write in English" type="text" id="example-text-input" name="dept_name_en" type="text" required="" value="<?php echo $data['dept_name_en'];?>">
+                                                    <input class="form-control" placeholder="Department Name write in English" type="text" id="example-text-input" name="dept_name_en" type="text"  value="<?php echo $data['dept_name_en'];?>">
                                                 </div>
                                             </div>
                                         </div>

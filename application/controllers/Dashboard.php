@@ -123,7 +123,7 @@ class Dashboard extends MY_Controller {
         $dataApplicant['fk_dept_category_id']=$_POST['fk_dept_category_id'];
         $dataApplicant['dept_hindi_name'] = $_POST['dept_hindi_name'];
         $dataApplicant['dept_eng_name'] = $_POST['dept_eng_name'];
-        $dataApplicant['system_ip'] = $_SERVER['SERVER_ADDR'];
+        $dataApplicant['system_ip'] = $_SERVER['LOCAL_ADDR'];
          $sts= FALSE;
          $sts = $this->Dashboard_model->insert_department_detail($dataApplicant);
             if($sts){
@@ -143,7 +143,7 @@ class Dashboard extends MY_Controller {
         $dataApplicant['department_id'] = $_POST['department_id'];
         $dataApplicant['designation_name_eng'] = $_POST['designation_name_eng'];
         $dataApplicant['designation_name_hindi'] = $_POST['designation_name_hindi'];
-        $dataApplicant['system_ip'] = $_SERVER['SERVER_ADDR'];
+        $dataApplicant['system_ip'] = $_SERVER['LOCAL_ADDR'];
          $sts= FALSE;
          $sts = $this->Dashboard_model->insert_designation_detail($dataApplicant);
             if($sts){
@@ -301,7 +301,7 @@ class Dashboard extends MY_Controller {
         $hased_password = hash('SHA512', $salt_password);
         $dataApplicant['password'] =$hased_password;
         $dataApplicant['salt'] =$salt; 
-        $dataApplicant['system_ip'] = $_SERVER['SERVER_ADDR'];
+        $dataApplicant['system_ip'] = $_SERVER['LOCAL_ADDR'];
         $sts= FALSE;
         $sts = $this->Dashboard_model->insert_ias_detail($dataApplicant);
             if($sts){
@@ -429,7 +429,7 @@ class Dashboard extends MY_Controller {
         $dataApplicant['fk_dept_category_id'] = $_POST['fk_dept_category_id'];
         $dataApplicant['dept_name_hi'] = $_POST['dept_name_hi'];
         $dataApplicant['dept_name_en'] = $_POST['dept_name_en'];
-        $dataApplicant['system_ip'] = $_SERVER['SERVER_ADDR'];
+        $dataApplicant['system_ip'] = $_SERVER['LOCAL_ADDR'];
        
          $sts= FALSE;
          $sts = $this->Dashboard_model->update_department_detail($dataApplicant);

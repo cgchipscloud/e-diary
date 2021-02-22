@@ -43,7 +43,7 @@
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-3 col-form-label text-right">Department Name(Hindi)</label>
                                                 <div class="col-sm-9">
-                                                    <input class="form-control" placeholder="विभाग का नाम हिंदी में लिखें " type="text" value="" id="example-text-input" name="dept_hindi_name" type="text" required="">
+                                                    <input class="form-control" placeholder="विभाग का नाम हिंदी में लिखें " id="example-text-input" name="dept_hindi_name" type="text" required="">
                                                 </div>
                                             </div>
                                         </div>
@@ -52,7 +52,7 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-3 col-form-label text-right">Department Name(English)</label>
                                                 <div class="col-sm-9">
-                                                    <input class="form-control" placeholder="Department Name write in English" type="text" value="" id="example-text-input" name="dept_eng_name" type="text" required="">
+                                                    <input class="form-control" placeholder="Department Name write in English" type="text"  id="example-text-input" name="dept_eng_name">
                                                 </div>
                                             </div>
                                         </div>

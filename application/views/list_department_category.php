@@ -33,8 +33,8 @@
                                         <tr>
                                             <th>S.No.</th>
                                             <th>Sequence Number</th>
-                                            <th>Department Category Name (English)</th>
-                                            <th>Department Category Name (Hindi)</th>
+                                            <th>Department Category Name (English/Hindi)</th>
+                                            <!-- <th>Department Category Name (Hindi)</th> -->
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -44,8 +44,8 @@
                                             <tr>
                                                 <td><?=$i++;?></td>
                                                 <td><?= $val['sequence']?></td>
-                                                <td><?= $val['category_name_eng']?></td>
-                                                <td><?= $val['category_name_hin']?></td>
+                                                <td><?= $val['category_name_eng'].'('.$val['category_name_hin'].')'?></td>
+                                                <!-- <td><?= $val['category_name_hin']?></td> -->
                                             </tr>
                                             <?php } ?>
                                         </tbody>

@@ -40,9 +40,13 @@ class Dashboard_model extends CI_Model
     // ------------------------------department data show start-------------------
     public function list_department_data()
     {
-        $sql ="SELECT d.dept_id, d.fk_dept_category_id,mdept.category_name_eng, d.dept_name_en, 
+        // $sql ="SELECT d.dept_id,d.order_id, d.fk_dept_category_id,mdept.category_name_eng, d.dept_name_en, 
+        //        d.order_id, d.dept_name_hi FROM mst_department d
+        //        LEFT JOIN mst_dept_category mdept on d.fk_dept_category_id=mdept.sequence ORDER BY d.order_id ASC";
+        $sql="SELECT COUNT(c.name) as num,d.dept_id,d.order_id, d.fk_dept_category_id, mdept.category_name_eng,mdept.category_name_hin, d.dept_name_en, 
                d.order_id, d.dept_name_hi FROM mst_department d
-               LEFT JOIN mst_dept_category mdept on d.fk_dept_category_id=mdept.sequence";
+               LEFT JOIN mst_dept_category mdept on d.fk_dept_category_id=mdept.sequence
+               INNER JOIN contact_details  c ON c.department_id= d.`dept_id`  GROUP BY c.department_id ORDER BY d.order_id ASC";
         $data = $this->db->query($sql)->result_array();
         return $data;
 
@@ -51,7 +55,7 @@ class Dashboard_model extends CI_Model
 
     public function list_designation_data()
     {
-        $sql ="SELECT des.designation_id,dep.dept_id,des.department_id,dep.dept_name_hi, des.designation_name_eng, des.designation_name_hindi FROM mst_designation des
+        $sql ="SELECT des.designation_id,dep.dept_id,des.department_id,dep.dept_name_hi,dep.dept_name_en, des.designation_name_eng, des.designation_name_hindi,des.designation_name_eng FROM mst_designation des
             JOIN mst_department dep on dep.dept_id=des.department_id";
 
         // $sql="SELECT des.designation_id,dep.dept_id,dep.dept_name_hi,dep.dept_id, des.designation_name_eng, 
@@ -91,6 +95,7 @@ class Dashboard_model extends CI_Model
     public function insert_department_detail($dataApplicant){
         $this->db->trans_begin();  
         $parameters = array('fk_dept_category_id'=>$dataApplicant['fk_dept_category_id'],
+                            'order_id'=>$dataApplicant['order_id'],
                              'dept_name_hi'=>$dataApplicant['dept_hindi_name'],
                              'dept_name_en'=>$dataApplicant['dept_eng_name'], 
                              'added_ip'=>$dataApplicant['system_ip']);     
@@ -324,6 +329,7 @@ class Dashboard_model extends CI_Model
     public function insert_department_category_detail($dataApplicant){
         $this->db->trans_begin();  
         $parameters = array('sequence'=>$dataApplicant['sequence'],
+                            'order_id'=>$dataApplicant['order_id'],
                             'category_name_eng'=>$dataApplicant['category_name_eng'], 
                             'category_name_hin'=>$dataApplicant['category_name_hin']);     
         $this->db->insert('mst_dept_category', $parameters);
@@ -356,6 +362,16 @@ class Dashboard_model extends CI_Model
 
 
     // -----------------------List Department category end-------------------------
+
+    public function contact_dept_count(){
+        
+        $sql="SELECT COUNT(c.name) as number , md.`dept_id`, md.`order_id`, md.`dept_name_hi`, md.`dept_name_en`,md.fk_dept_category_id FROM mst_department md
+            INNER JOIN contact_details c ON c.department_id= md.`dept_id` 
+
+            GROUP BY c.department_id";
+        $data=$this->db->query($sql)->result_array();
+        return $data;
+    }
 
     // -----------------------List Department start-------------------------
     

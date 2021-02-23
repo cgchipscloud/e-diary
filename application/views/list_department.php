@@ -33,27 +33,25 @@
                                             <thead>
                                             <tr>
                                                 <th>S.No.</th>
-                                                <th>Department Category Sequence No</th>
-                                                <th>Department Category Name (English)</th>
-                                                <th>Department Name (Hindi)</th>
-                                                <th>Department Name (English)</th>
+                                                <th>Contact Number(Count)</th>
+                                                <th>Department Category Name (English/Hindi)</th>
+                                                <th>Department Name (English/Hindi)</th>
+                                                <!-- <th>Department Name (English)</th> -->
                                                 <th>Action</th>
                                                 
 
                                             </tr>
                                             </thead>
-        
-        
                                             <tbody>
                                                 <?php
                                                     $i = 1;
                                                     foreach($dept_data as $val){ ?>
                                                 <tr>
                                                     <td><?=$i++;?></td>
-                                                    <td><?= $val['fk_dept_category_id']?></td>
-                                                    <td><?= $val['category_name_eng']?></td>
-                                                    <td><?= $val['dept_name_hi']?></td>
-                                                    <td><?= $val['dept_name_en']?></td>
+                                                    <td><?= $val['num']?></td>
+                                                    <td><?= $val['category_name_eng'].'('.$val['category_name_hin'].')'?></td>
+                                                    <td><?= $val['dept_name_en'].'('.$val['dept_name_hi'].')'?></td>
+                                                    <!-- <td><?= $val['dept_name_en']?></td> -->
                                                     <td><a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Edit-department')?>?dept_id=<?=$val['dept_id']?>">Update</a></td>
 
                                                 </tr>

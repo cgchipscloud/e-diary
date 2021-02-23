@@ -33,7 +33,7 @@
                                                     <select class="form-control" id="department_id" name="department_id" required="">
                                                     <option value="">Select Department Name</option>
                                                     <?php foreach ($get_department as $val) { ?>
-                                                        <option value="<?=$val['dept_id'] ?>"><?= $val['dept_name_hi'] ?></option>
+                                                        <option value="<?=$val['dept_id'] ?>"><?= $val['dept_name_hi'].' ('.$val['dept_name_en'].')' ?></option>
                                                       <?php } ?>
                                                     </select>
                                                 </div>

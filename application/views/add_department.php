@@ -32,12 +32,21 @@
                                                     <select class="form-control" id="fk_dept_category_id" name="fk_dept_category_id" required="">
                                                     <option value="">Select Department Category Name</option>
                                                     <?php foreach ($dept_cate as $val) { ?>
-                                                        <option value="<?=$val['sequence'] ?>"><?= $val['category_name_eng'] ?></option>
+                                                        <option value="<?=$val['sequence'] ?>"><?= $val['category_name_eng'].' ('.$val['category_name_hin'].')' ?></option>
                                                       <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
                                          </div>
+
+                                         <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label text-right">Order Number</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" placeholder="विभाग का क्रम लिखें " id="example-text-input" name="order_id" type="text" required="">
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">

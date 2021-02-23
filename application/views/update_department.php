@@ -60,6 +60,15 @@ left join mst_dept_category mdept on d.fk_dept_category_id= mdept.sequence where
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label text-right">Order Number</label>
+                                                <div class="col-sm-9">
+                                                    <input class="form-control" placeholder="विभाग का क्रम लिखें " type="text" id="example-text-input" name="order_id" type="text" required="" value="<?php echo $data['order_id'];?>">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-12">
+                                            <div class="form-group row">
                                                 <label for="" class="col-sm-3 col-form-label text-right">Department Name(Hindi)</label>
                                                 <div class="col-sm-9">
                                                     <input class="form-control" placeholder="विभाग का नाम हिंदी में लिखें " type="text" id="example-text-input" name="dept_name_hi" type="text" required="" value="<?php echo $data['dept_name_hi'];?>">

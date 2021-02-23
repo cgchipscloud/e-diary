@@ -31,8 +31,8 @@
                                             <tr>
                                                 <th width="5%">S.No.</th>
                                                  <th width="15%">IAS ID</th>
-                                                <th width="15%">IAS Name (English)</th>
-                                                <th width="10%">IAS Name (Hindi)</th>
+                                                <th width="15%">IAS Name (English/Hindi)</th>
+                                                <!-- <th width="10%">IAS Name (Hindi)</th> -->
                                                 <th width="5%">Email ID</th>
                                                 <th width="5%">Mobile Number</th>
                                                 <th width="10%">Post (Address)</th>
@@ -46,8 +46,8 @@
                                             <tr>
                                                 <td width="5%"><?=$i++;?></td>
                                                 <td width="15%"><?= $val['ias_id']?></td>
-                                                <td width="15%"><?= $val['ias_name_en']?></td>
-                                                <td width="10%"><?= $val['ias_name_hi']?></td>
+                                                <td width="15%"><?= $val['ias_name_en'].'('.$val['ias_name_hi'].')'?></td>
+                                                <!-- <td width="10%"><?= $val['ias_name_hi']?></td> -->
                                                 <td width="5%"><?= $val['email_id']
                                                     ?></td>
                                                 <td width="10%"><?= $val['mobile_no']?></td>

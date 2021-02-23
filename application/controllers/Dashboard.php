@@ -82,6 +82,7 @@ class Dashboard extends MY_Controller {
     public function list_department() 
     {
         $data['title']="E-Dairy";
+        //$data['c_data'] = $this->Dashboard_model->contact_dept_count();
         $data['dept_data'] = $this->Dashboard_model->list_department_data();
         $this->render_view('list_department', $data);
     }
@@ -121,6 +122,7 @@ class Dashboard extends MY_Controller {
     public function insert_department(){
 
         $dataApplicant['fk_dept_category_id']=$_POST['fk_dept_category_id'];
+        $dataApplicant['order_id']=$_POST['order_id'];
         $dataApplicant['dept_hindi_name'] = $_POST['dept_hindi_name'];
         $dataApplicant['dept_eng_name'] = $_POST['dept_eng_name'];
         $dataApplicant['system_ip'] = $_SERVER['LOCAL_ADDR'];
@@ -426,6 +428,7 @@ class Dashboard extends MY_Controller {
 
      public function update_deaprtment_details(){
         $dataApplicant['dept_id'] = $_POST['dept_id'];
+        $dataApplicant['order_id'] = $_POST['order_id'];
         $dataApplicant['fk_dept_category_id'] = $_POST['fk_dept_category_id'];
         $dataApplicant['dept_name_hi'] = $_POST['dept_name_hi'];
         $dataApplicant['dept_name_en'] = $_POST['dept_name_en'];

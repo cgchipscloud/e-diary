@@ -42,18 +42,18 @@
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label for="" class="col-sm-2 col-form-label text-right">Department Name(Hindi)</label>
+                                                <label for="" class="col-sm-2 col-form-label text-right">Designation Name(Hindi)</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="विभाग का नाम हिंदी में लिखें " type="text" value="" id="example-text-input" name="designation_name_eng" type="text" required="">
+                                                    <input class="form-control" placeholder="पद का नाम हिंदी में लिखें " type="text" value="" id="example-text-input" name="designation_name_hindi" type="text" required="">
                                                 </div>
                                             </div>
                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">
-                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Department Name(English)</label>
+                                                <label for="example-text-input" class="col-sm-2 col-form-label text-right">Designation Name(English)</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="Department Name write in English" type="text" value="" id="example-text-input" name="designation_name_hindi">
+                                                    <input class="form-control" placeholder="Designation Name write in English" type="text" value="" id="example-text-input" name="designation_name_eng">
                                                 </div>
                                             </div>
                                         </div>

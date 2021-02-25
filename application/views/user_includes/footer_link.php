@@ -45,8 +45,15 @@
                         $temp="<option value=\"\">Select Designation</option>";
                         if (res) {
                             $.each( data, function( key, value ) {
-                                $name = value["designation_name_hindi"];
-                                $temp+="<option value="+value["designation_id"]+">"+ $name.toUpperCase() +"</option>";
+                                $name_hi = value["designation_name_hindi"];
+                                $name_en = value["designation_name_eng"];
+                                if($name_en==null){
+                                    $temp+="<option value="+value["designation_id"]+">"+ 
+                                    $name_hi+"</option>";
+                                }else{
+                                    $temp+="<option value="+value["designation_id"]+">"+ 
+                                    $name_en+ " ("+ $name_hi+" )" +"</option>";
+                                }
                             });
                             $("#designation_id").html($temp);
                         }

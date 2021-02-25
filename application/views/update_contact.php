@@ -49,11 +49,11 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                                 <div class="col-sm-10">
                                                     <select class="form-control" id="department_id" name="department_id" required="">
                                                     <?php if(!empty($data['department_id'])){?>
-                                                    <option value="<?=$data['department_id'] ?>"><?= $data['dept_name_hi'] ?></option>
+                                                    <option value="<?=$data['department_id'] ?>"><?= $data['dept_name_en'].'('.$data['dept_name_hi'].')' ?></option>
                                                     <?php }?>
                                                     <option value="">Select Department Name</option>
                                                     <?php foreach ($get_department as $val) { ?>
-                                                        <option value="<?=$val['dept_id'] ?>"><?= $val['dept_name_hi'] ?></option>
+                                                        <option value="<?=$val['dept_id'] ?>"><?= $val['dept_name_en'].'('.$val['dept_name_hi'].')' ?></option>
                                                       <?php } ?>
                                                     </select>
                                                 </div>
@@ -66,7 +66,8 @@ if(isset($_GET['id']) && !empty($_GET['id']))
                                                 <div class="col-sm-10">
                                                     <select class="form-control" id="designation_id" name="designation_id" required="">
                                                     <?php if(!empty($data['designation_id'])){?>
-                                                    <option value="<?=$data['designation_id'] ?>"><?= $data['designation_name_hindi'] ?></option>
+                                                    <option value="<?=$data['designation_id'] ?>"> <?php if(empty($data['designation_name_eng'])){echo $data['designation_name_hindi'];}else{ echo 
+                                                    $data['designation_name_eng'].'('.$data['designation_name_hindi'].')';}?></option>
                                                     
 
                                                     <?php }?>

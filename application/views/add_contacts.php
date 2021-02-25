@@ -127,7 +127,7 @@
                                             <div class="form-group row">
                                                 <label for="example-text-input" class="col-sm-2 col-form-label text-right">Email ID</label>
                                                 <div class="col-sm-10">
-                                                    <input class="form-control" placeholder="" type="text" value="" id="example-text-input" name="cont_email" type="Email"  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required="">
+                                                    <input class="form-control" placeholder="" type="text" value="" id="example-text-input" name="cont_email" type="Email">
                                                 </div>
                                             </div>
                                         </div>

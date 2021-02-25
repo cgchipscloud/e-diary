@@ -71,8 +71,8 @@ class Dashboard extends MY_Controller {
     }
 
     public function ajax_desig_list()
-    {
-
+    {   
+        
         $department_id = $_POST['department_id'];
         $desig_list = $this->Dashboard_model->get_designation($department_id);
         echo json_encode($desig_list, JSON_UNESCAPED_SLASHES);

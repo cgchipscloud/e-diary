@@ -191,6 +191,7 @@ class Dashboard extends MY_Controller {
 
     // update contact details start
     public function update_contact_details(){
+        //$this->Dashboard_model->insert_contact_detail_log($dataApplicant);
         $dataApplicant['id'] = $_POST['id'];
         $dataApplicant['name'] = $_POST['name'];
         $dataApplicant['home_address'] = $_POST['home_address'];
@@ -207,6 +208,7 @@ class Dashboard extends MY_Controller {
         $dataApplicant['cont_fax_two'] = $_POST['cont_fax_two'];
        
          $sts= FALSE;
+
          $sts = $this->Dashboard_model->update_contact_detail($dataApplicant);
             if($sts){
                 echo"<script>alert('Contact updated successfully..')</script>";
@@ -447,6 +449,45 @@ class Dashboard extends MY_Controller {
 
 
 // -------------------update department end-----------------------------------
+
+    public function edit_designation(){
+        $data['title']="E-Dairy";
+
+        $data['get_department'] = $this->Dashboard_model->get_department();
+        if(isset($_GET['designation_id']) && !empty($_GET['designation_id']))
+        {
+          $designation_id = $_GET['designation_id'];
+          $data['desigdata'] = $this->Dashboard_model->all_desig_list($designation_id);
+        }
+        $this->render_view('update_designation', $data);
+
+    }
+
+
+    // -------------------update designation start-----------------------------------
+
+     public function update_designation_details(){
+        $dataApplicant['designation_id'] = $_POST['designation_id'];
+        $dataApplicant['department_id'] = $_POST['department_id'];
+        $dataApplicant['designation_name_eng'] = $_POST['designation_name_eng'];
+        $dataApplicant['designation_name_hindi'] = $_POST['designation_name_hindi'];
+        $dataApplicant['system_ip'] = $_SERVER['LOCAL_ADDR'];
+       
+         $sts= FALSE;
+         $sts = $this->Dashboard_model->update_designation_detail($dataApplicant);
+            if($sts){
+                echo"<script>alert('Designation Details Updated Successfully..')</script>";
+            }
+            else{
+             echo"<script>alert('Try Again.');</script>";
+            }
+            redirect(base_url('Ediary-List-designation'), "refresh");
+        } 
+
+
+// -------------------update designation end-----------------------------------
+
+        
 
 
 

@@ -32,6 +32,7 @@ $route['(?i)Ediary-List-Department-Category'] = 'Dashboard/list_departments_cate
 $route['(?i)Ediary-Edit-Contacts'] = 'Dashboard/edit_contact';
 $route['(?i)Ediary-Edit-IAS-Officer'] = 'Dashboard/edit_ias';
 $route['(?i)Ediary-Edit-department'] = 'Dashboard/edit_department';
+$route['(?i)Ediary-Edit-designation'] = 'Dashboard/edit_designation';
 
 
 
@@ -41,6 +42,7 @@ $route['(?i)Ediary-Edit-department'] = 'Dashboard/edit_department';
 $route['(?i)Ediary-Update-Contacts'] = 'Dashboard/update_contact_details';
 $route['(?i)Ediary-Update-IAS-Details'] = 'Dashboard/update_ias_details';
 $route['(?i)Ediary-Update-department'] = 'Dashboard/update_deaprtment_details';
+$route['(?i)Ediary-Update-designation'] = 'Dashboard/update_designation_details';
 
 
 

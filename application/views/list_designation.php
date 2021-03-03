@@ -36,7 +36,7 @@
                                                 <th>S.No.</th>
                                                 <th>Department Name (Hindi/English)</th>
                                                 <th>Designation Name (Hindi/English)</th>
-                                                <!-- <th>Designation Name (Hindi/English)</th> -->
+                                                 <th>Action</th>
                                                 
                                             </tr>
                                             </thead>
@@ -50,6 +50,9 @@
                                                     <td><?=$i++;?></td>
                                                     <td><?= $val['dept_name_hi'].' ('.$val['dept_name_en'].')'?></td>
                                                     <td><?= $val['designation_name_hindi'].' ('.$val['designation_name_eng'].')'?></td>
+
+                                                    <td><a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Edit-designation')?>?designation_id=<?=$val['designation_id']?>">Update</a></td>
+
                                                    <!--  <td><?= $val['designation_name_eng'].' ('.$val['designation_name_eng'].')'?></td> -->
                                                 </tr>
                                                 <?php } ?>

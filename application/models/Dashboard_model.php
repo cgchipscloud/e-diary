@@ -176,6 +176,7 @@ class Dashboard_model extends CI_Model
 //-------------------------------------update contact details------------------------
 
     public function update_contact_detail($dataApplicant){
+        //$this->insert_contact_detail_log($dataApplicant);
         $this->db->trans_begin();
         //print_r($dataApplicant);exit();
         
@@ -386,6 +387,7 @@ class Dashboard_model extends CI_Model
 
     // -----------------------List Department end-------------------------
 
+   
    // -----------------------update department data start------------------
 
     public function update_department_detail($dataApplicant){
@@ -416,6 +418,83 @@ class Dashboard_model extends CI_Model
 
 
    // ----------------------update department data end---------------------
+
+    // --------------------insert contact details log start----------------
+
+    // public function insert_contact_detail_log($dataApplicant){
+    //     $this->db->trans_begin();
+
+    //     $parameters = array('name'=>$dataApplicant['name'],
+    //                          'home_address'=>$dataApplicant['home_address'],
+    //                          'office_address'=>$dataApplicant['office_address'],
+    //                          'siting_address'=>$dataApplicant['siting_address'],
+    //                          'cont_personal_no'=>$dataApplicant['cont_personal_no'],
+    //                          'cont_personal_no_two'=>$dataApplicant['cont_personal_no_two'],
+    //                          'designation_id'=>$dataApplicant['designation_id'],
+    //                          'department_id'=>$dataApplicant['department_id'],
+    //                          'cont_email'=>$dataApplicant['cont_email'],
+    //                          'cont_office_no'=>$dataApplicant['cont_office_no'],
+    //                          'cont_office_two'=>$dataApplicant['cont_office_two'],
+    //                          'cont_fax'=>$dataApplicant['cont_fax'],
+    //                          'cont_fax_two'=>$dataApplicant['cont_fax_two'],
+
+    //                          );     
+    //     $this->db->insert('contact_details_log', $parameters);
+    //     $last_id = $this->db->insert_id();             
+    //     $sts = FALSE;
+    //      if ($this->db->trans_status() === FALSE)
+    //      {
+    //          $this->db->trans_rollback();
+    //      }
+    //      else
+    //      {
+    //         $this->db->trans_commit();
+    //         $sts = TRUE;
+    //      }
+    //      return $sts;
+    // }
+
+    // --------------------insert contact details log end------------------
+// ----------------------list designation data--------------------------
+       public function all_desig_list($designation_id){
+
+            $query = "SELECT des.designation_id,dep.dept_id,des.department_id,dep.dept_name_hi,dep.dept_name_en, des.designation_name_eng, des.designation_name_hindi,des.designation_name_eng FROM mst_designation des
+                JOIN mst_department dep on dep.dept_id=des.department_id where des.designation_id=" .$designation_id;
+             $data= $this->db->query($query,array($designation_id))->row_array();
+             return $data;
+       }
+   // ----------------------------------------------------------------------
+
+    // -----------------------update deignation data start------------------
+
+    public function update_designation_detail($dataApplicant){
+        $this->db->trans_begin();
+
+        //print_r($dataApplicant);exit();
+        $designation_id = $dataApplicant['designation_id'];
+         $parameters = array('department_id'=>$dataApplicant['department_id'],
+                             'designation_name_eng'=>$dataApplicant['designation_name_eng'],
+                             'designation_name_hindi'=>$dataApplicant['designation_name_hindi'],
+                             'added_ip'=>$dataApplicant['system_ip']);
+        $this->db->where('designation_id', $designation_id);                        
+        $this->db->update('mst_designation', $parameters);
+        $last_id = $this->db->insert_id();         
+        $sts = FALSE;
+         if ($this->db->trans_status() === FALSE)
+         {
+             $this->db->trans_rollback();
+         }
+         else
+         {
+            $this->db->trans_commit();
+            $sts = TRUE;
+         }
+         return $sts;
+    }
+
+
+   // ----------------------update department data end---------------------
+
 
 }
 ?>

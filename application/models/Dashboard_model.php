@@ -93,12 +93,14 @@ class Dashboard_model extends CI_Model
     //-----------------------------insert department data------------------------------
 
     public function insert_department_detail($dataApplicant){
+        //print_r($dataApplicant);exit();
         $this->db->trans_begin();  
         $parameters = array('fk_dept_category_id'=>$dataApplicant['fk_dept_category_id'],
                             'order_id'=>$dataApplicant['order_id'],
                              'dept_name_hi'=>$dataApplicant['dept_hindi_name'],
                              'dept_name_en'=>$dataApplicant['dept_eng_name'], 
-                             'added_ip'=>$dataApplicant['system_ip']);     
+                             'added_ip'=>$dataApplicant['system_ip'],
+                             'is_active'=>$dataApplicant['is_active']);     
         $this->db->insert('mst_department', $parameters);
         $last_id = $this->db->insert_id();             
         $sts = FALSE;
@@ -122,7 +124,8 @@ class Dashboard_model extends CI_Model
         $parameters = array('department_id'=>$dataApplicant['department_id'],
                              'designation_name_eng'=>$dataApplicant['designation_name_eng'],
                              'designation_name_hindi'=>$dataApplicant['designation_name_hindi'],
-                             'added_ip'=>$dataApplicant['system_ip']);     
+                             'added_ip'=>$dataApplicant['system_ip']
+                             );     
         $this->db->insert('mst_designation', $parameters);
         $last_id = $this->db->insert_id();             
         $sts = FALSE;
@@ -398,8 +401,8 @@ class Dashboard_model extends CI_Model
         $parameters = array('fk_dept_category_id'=>$dataApplicant['fk_dept_category_id'],
                              'dept_name_hi'=>$dataApplicant['dept_name_hi'],
                              'dept_name_en'=>$dataApplicant['dept_name_en'],
-                             'added_ip'=>$dataApplicant['system_ip']
-                             ); 
+                             'added_ip'=>$dataApplicant['system_ip'],
+                              'is_active'=>$dataApplicant['is_active']); 
         $this->db->where('dept_id', $dept_id);                        
         $this->db->update('mst_department', $parameters);
         $last_id = $this->db->insert_id();         

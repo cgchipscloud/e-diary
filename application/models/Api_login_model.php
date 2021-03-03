@@ -192,6 +192,7 @@ class Api_login_model extends CI_Model
                 $returnData['ias_id'] = $ias_id;
             }else {
                 $returnData['status'] = FALSE;
+
                 $returnData['message'] = "OTP Could Not be Sent";
             }
         }else {

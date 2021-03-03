@@ -46,7 +46,7 @@ class Dashboard_model extends CI_Model
         $sql="SELECT COUNT(c.name) as num,d.dept_id,d.order_id, d.fk_dept_category_id, mdept.category_name_eng,mdept.category_name_hin, d.dept_name_en, 
                d.order_id, d.dept_name_hi FROM mst_department d
                LEFT JOIN mst_dept_category mdept on d.fk_dept_category_id=mdept.sequence
-               INNER JOIN contact_details  c ON c.department_id= d.`dept_id`  GROUP BY c.department_id ORDER BY d.order_id ASC";
+               LEFT JOIN contact_details  c ON c.department_id= d.`dept_id`  GROUP BY d.dept_id ORDER BY d.order_id ASC";
         $data = $this->db->query($sql)->result_array();
         return $data;
 

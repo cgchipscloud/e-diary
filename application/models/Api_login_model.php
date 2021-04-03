@@ -261,27 +261,26 @@ public function getDeptCategoryList(){
     return $this->db->query($sql)->result_array();
 }
 
-public function getDeptList($category_id){
+public function getSubcategory($category_id){
+   $parameter=array();
+    $condition="";
+    if ($category_id>0) {
+        $condition=" WHERE category_id=? and is_visible=1";
+        array_push($parameter, $category_id);        
+    }
+    $sql="SELECT id,category_id,sub_category_name_hi,sub_category_name_eng FROM `sub_category` $condition";
+    return $this->db->query($sql,$parameter)->result_array(); 
 
-    // $sql="SELECT `dept_id`, `dept_name_hi`, `dept_name_en` FROM `mst_department`";
-    // $parameter=array();
-    // if($category_id==0){
+}
 
-    //    $sql.=" ORDER by order_id";
-    // }
-    // else{
-    //     $sql.= " WHERE fk_dept_category_id= ? ORDER by order_id";
-    //     $parameter[0]=$category_id;
-    // }
-
-    //alternate code
+public function getDeptList($subcategory_id){
     $parameter=array();
     $condition = "";
-    if($category_id>0){
-        $condition = " WHERE fk_dept_category_id = ?";
-        array_push($parameter,$category_id);   
+    if($subcategory_id>0){
+        $condition = " WHERE fk_sub_category_id=?";
+        array_push($parameter,$subcategory_id);   
     }
-    $sql = "SELECT `dept_id`, `dept_name_hi`, `dept_name_en` FROM `mst_department` $condition ORDER BY order_id";
+    $sql ="SELECT `dept_id`,fk_sub_category_id, `dept_name_hi`, `dept_name_en` FROM `mst_department` $condition ORDER BY order_id";
     return $this->db->query($sql,$parameter)->result_array();
 }
 
@@ -299,23 +298,50 @@ public function getContacts($dept_id){
 
 }
 
+
 public function getCompleteContactDetails(){
     $returnData=array();
-
-    foreach ($this->getDeptCategoryList() as $cat) {
-        $data=array();
-        $data["title"]=$cat["category_name_eng"];
-        $data["subTitles"]=array();
-        foreach ($this->getDeptList($cat["category_id"]) as $dept) {
-            $dept_data=array();
-            $dept_data["dept_name_hi"]=$dept["dept_name_hi"];
-            $dept_data["contacts"]=$this->getContacts($dept["dept_id"]);
-            array_push($data["subTitles"],$dept_data);     
+    foreach ($this->getDeptCategoryList() as $cat)
+    {
+        $data=$cat;
+        $subCategorys=$this->getSubcategory($cat["category_id"]);
+        foreach ($subCategorys as $subcate) {
+            $data1 = $subcate;
+            $departments = $this->getDeptList($subcate["id"]);
+            foreach ($departments as $department) {
+                $data2 = $department;
+                $data2['contacts'] = $this->getContacts($department["dept_id"]);
+                array_push($data1, $data2);
+            }
+            array_push($data, $data1);
         }
         array_push($returnData, $data);
     }
-    return $returnData;
+   return $returnData;
 }
+
+// public function getCompleteContactDetails(){
+//     $returnData=array();
+//     foreach ($this->getDeptCategoryList() as $cat) {
+//         $data=array();
+//         $data["title"]=$cat["category_name_eng"];
+//         $data["subTitles"]=array();
+//             foreach ($this->getSubcategory($cat["category_id"]) as $subcat) {
+//                 $cat_data=array();
+//                 $cat_data["sub_category_name_hi"]=$subcat["sub_category_name_hi"];
+//                 array_push($data["subTitles"],$cat_data);
+                
+//                 foreach ($this->getDeptList($subcat["id"]) as $dept) {
+//                     $dept_data=array();
+//                     $dept_data["dept_name_hi"]=$dept["dept_name_hi"];
+//                     $dept_data["contacts"]=$this->getContacts($dept["dept_id"]);
+//                     array_push($data["subTitles"],$dept_data);    
+//                 }
+//             }    
+//         array_push($returnData, $data);
+//     }
+//     return $returnData;
+// }
 
 }
 ?>

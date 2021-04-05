@@ -5,6 +5,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['(?i)ajax-desig-list'] = 'Dashboard/ajax_desig_list';
+$route['(?i)ajax-subcategory-list']='Dashboard/ajax_subcategory_list';
+$route['(?i)ajax-department-list']='Dashboard/ajax_department_list';
 
 $route['(?i)Ediary-Login-Admin'] = 'Login/login';
 $route['(?i)Ediary-Logout-Admin'] = 'Login/logout';
@@ -64,6 +66,8 @@ $route['(?i)API-send-otp'] = 'Api_login/sendOTP';
 $route['(?i)API-login-Check'] = 'Api_login/checkUserData';
 
 $route['(?i)API-contact-Details']='Api_login/Contacts';
+
+$route['(?i)API-contact']='Api_login/Contactsdetails';
 
 
 

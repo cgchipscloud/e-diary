@@ -164,6 +164,15 @@ class Api_login extends RestController {
                     ], RestController::HTTP_OK );
     }
 
+    public function Contactsdetails_get(){
+
+        $this->response( [  
+                        'status' => RestController::HTTP_OK,              
+                        'message' => '',
+                        'data' => $this->Api_login_model->getCompleteContactData()
+                    ], RestController::HTTP_OK );
+    }
+
 // ------------------------get Contacts Details end--------------------------
 
 

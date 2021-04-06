@@ -5,8 +5,9 @@ if(isset($_GET['dept_id']) && !empty($_GET['dept_id']))
 
   $dept_id =$_GET['dept_id'];
 
-  $query = "SELECT d.dept_id, d.fk_dept_category_id,mdept.category_name_eng,mdept.sequence, d.dept_name_en, d.order_id, d.dept_name_hi FROM mst_department d
-left join mst_dept_category mdept on d.fk_dept_category_id= mdept.sequence where d.dept_id=" .$dept_id;
+  $query = "SELECT d.dept_id,sc.id,sc.sub_category_name_hi, d.fk_dept_category_id,mdept.category_name_eng,mdept.sequence, d.dept_name_en, d.order_id, d.dept_name_hi FROM mst_department d
+left join mst_dept_category mdept on d.fk_dept_category_id= mdept.sequence
+LEFT JOIN sub_category sc ON  d.fk_sub_category_id=sc.id where d.dept_id=" .$dept_id;
     $data = $this->db->query($query)->row_array();
   //print_r($data);exit();
 }
@@ -39,24 +40,40 @@ left join mst_dept_category mdept on d.fk_dept_category_id= mdept.sequence where
                                     <div class="row"> 
 
                                     <input type="hidden" name="dept_id" id="dept_id" value="<?php echo $data['dept_id'];?>">
+                                    <input type="hidden" name="subcate_id" id="subcate_id" 
+                                     value="<?php echo $data['id'];?>">
 
-
-                                    <div class="col-lg-12">
+                                        <div class="col-lg-12">
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-3 col-form-label text-right">Department Category Name</label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control" id="fk_dept_category_id" name="fk_dept_category_id" required="">
-                                                    <?php if(!empty($data['sequence'])){?>
+                                                    <select class="form-control" id="category_id" name="fk_dept_category_id" required="">
+                                                        <?php if(!empty($data['sequence'])){?>
                                                     <option value="<?=$data['sequence'] ?>"><?= $data['category_name_eng'] ?></option>
                                                     <?php }?>
                                                     <option value="">Select Department Category Name</option>
-                                                    <?php foreach ($dept_category as $val) { ?>
-                                                        <option value="<?=$val['sequence'] ?>"><?= $val['category_name_eng'] ?></option>
+                                                    <?php foreach ($dept_cate as $val) { ?>
+                                                        <option value="<?=$val['sequence'] ?>"><?= $val['category_name_eng'].' ('.$val['category_name_hin'].')' ?></option>
                                                       <?php } ?>
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                         </div>
+
+                                         <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label text-right">Sub-category Name</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" id="subcategory_id" name="subcategory_id" required="">
+                                                    <?php if(!empty($data['id'])){?>
+                                                    <option value="<?=$data['id'] ?>"><?= $data['sub_category_name_hi'] ?></option>
+                                                    <?php }?>
+                                                    <option value="">Select Sub-category Name</option>
+                                                   
+                                                    </select>
+                                                </div>
+                                            </div>
+                                         </div>
 
                                         <div class="col-lg-12">
                                             <div class="form-group row">

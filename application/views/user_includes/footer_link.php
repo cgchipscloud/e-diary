@@ -63,6 +63,84 @@
                     }
                 });
             });
+
+            // sub-category and department data start
+
+            $("#category_id").change(function(){
+                $code = $(this).val();
+                $("#subcategory_id").html("<option value=\"\">Select Category Name</option>");
+                $.ajax
+                ({
+                    type: 'POST',
+                    //contentType: "application/json; charset=utf8",
+                    url:'<?= base_url('ajax-subcategory-list'); ?>',
+                    data: {'category_id':$code},
+                    datatype : 'html',
+                    success: function(res)
+                    {
+                        var data = JSON.parse(res);
+                        $temp = "";
+                        $temp="<option value=\"\">Select Subcategory</option>";
+                        if (res) {
+                            $.each( data, function( key, value ) {
+                                $name_hi = value["sub_category_name_hi"];
+                                $name_en = value["sub_category_name_eng"];
+                                if($name_en==null){
+                                    $temp+="<option value="+value["id"]+">"+ 
+                                    $name_hi+"</option>";
+                                }else{
+                                    $temp+="<option value="+value["id"]+">"+ 
+                                    $name_en+ " ("+ $name_hi+" )" +"</option>";
+                                }
+                            });
+                            $("#subcategory_id").html($temp);
+                        }
+                    } 
+                    ,error:function(xhr){
+                        alert(xhr.status);
+                    }
+                });
+            });
+
+            $("#subcategory_id").change(function(){
+                $code = $(this).val();
+                $("#department_id").html("<option value=\"\">Select Sub-category Name</option>");
+                $.ajax
+                ({
+                    type: 'POST',
+                    //contentType: "application/json; charset=utf8",
+                    url:'<?= base_url('ajax-department-list'); ?>',
+                    data: {'id':$code},
+                    datatype : 'html',
+                    success: function(res)
+                    {
+                        var data = JSON.parse(res);
+                        $temp = "";
+                        $temp="<option value=\"\">Select Department</option>";
+                        if (res) {
+                            $.each( data, function( key, value ) {
+                                $name_hi = value["dept_name_hi"];
+                                $name_en = value["dept_name_en"];
+                                if($name_en==null){
+                                    $temp+="<option value="+value["dept_id"]+">"+ 
+                                    $name_hi+"</option>";
+                                }else{
+                                    $temp+="<option value="+value["dept_id"]+">"+ 
+                                    $name_en+ " ("+ $name_hi+" )" +"</option>";
+                                }
+                            });
+                            $("#subcategory_id").html($temp);
+                        }
+                    } 
+                    ,error:function(xhr){
+                        alert(xhr.status);
+                    }
+                });
+            });
+
+
+
+            // sub-category and department data end
          
         
     } );

@@ -35,8 +35,8 @@
                                                 <th>S.No.</th>
                                                 <th>Contact Number(Count)</th>
                                                 <th>Department Category Name (English/Hindi)</th>
+                                                <th>Sub-category Name</th>
                                                 <th>Department Name (English/Hindi)</th>
-                                                <!-- <th>Department Name (English)</th> -->
                                                 <th>Action</th>
                                                 
 
@@ -48,10 +48,13 @@
                                                     foreach($dept_data as $val){ ?>
                                                 <tr>
                                                     <td><?=$i++;?></td>
-                                                    <td><?= $val['num']?></td>
+                                                    <td class="font-weight-bold text-center text-primary"><?= $val['total_contacts']?></td>
                                                     <td><?= $val['category_name_eng'].'('.$val['category_name_hin'].')'?></td>
-                                                    <td><?= $val['dept_name_en'].'('.$val['dept_name_hi'].')'?></td>
-                                                    <!-- <td><?= $val['dept_name_en']?></td> -->
+                                                    <td><?= $val['sub_category_name_eng'].'('.$val['sub_category_name_hi'].')'?></td>
+                                                    <td>
+                                                        <?= $val['dept_name_en'].'('.$val['dept_name_hi'].')'?>
+                                                            
+                                                        </td>
                                                     <td><a class="btn btn-sm btn-primary" href="<?=base_url('Ediary-Edit-department')?>?dept_id=<?=$val['dept_id']?>">Update</a></td>
 
                                                 </tr>

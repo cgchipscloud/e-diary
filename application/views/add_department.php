@@ -29,11 +29,23 @@
                                             <div class="form-group row">
                                                 <label for="" class="col-sm-3 col-form-label text-right">Department Category Name</label>
                                                 <div class="col-sm-9">
-                                                    <select class="form-control" id="fk_dept_category_id" name="fk_dept_category_id" required="">
+                                                    <select class="form-control" id="category_id" name="fk_dept_category_id" required="">
                                                     <option value="">Select Department Category Name</option>
                                                     <?php foreach ($dept_cate as $val) { ?>
                                                         <option value="<?=$val['sequence'] ?>"><?= $val['category_name_eng'].' ('.$val['category_name_hin'].')' ?></option>
                                                       <?php } ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                         </div>
+
+                                         <div class="col-lg-12">
+                                            <div class="form-group row">
+                                                <label for="" class="col-sm-3 col-form-label text-right">Sub-category Name</label>
+                                                <div class="col-sm-9">
+                                                    <select class="form-control" id="subcategory_id" name="subcategory_id" required="">
+                                                    <option value="">Select Sub-category Name</option>
+                                                   
                                                     </select>
                                                 </div>
                                             </div>

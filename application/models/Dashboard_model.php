@@ -43,14 +43,28 @@ class Dashboard_model extends CI_Model
         // $sql ="SELECT d.dept_id,d.order_id, d.fk_dept_category_id,mdept.category_name_eng, d.dept_name_en, 
         //        d.order_id, d.dept_name_hi FROM mst_department d
         //        LEFT JOIN mst_dept_category mdept on d.fk_dept_category_id=mdept.sequence ORDER BY d.order_id ASC";
-        $sql="SELECT COUNT(c.name) as num,d.dept_id,d.order_id, d.fk_dept_category_id, mdept.category_name_eng,mdept.category_name_hin, d.dept_name_en, 
+        /* $sql="SELECT COUNT(c.name) as num,d.dept_id,d.order_id, d.fk_dept_category_id, mdept.category_name_eng,mdept.category_name_hin, d.dept_name_en, 
                d.order_id, d.dept_name_hi FROM mst_department d
-               LEFT JOIN mst_dept_category mdept on d.fk_dept_category_id=mdept.sequence
-               LEFT JOIN contact_details  c ON c.department_id= d.`dept_id`  GROUP BY d.dept_id ORDER BY d.order_id ASC";
+                LEFT JOIN mst_dept_category mdept on d.fk_dept_category_id=mdept.sequence
+                LEFT JOIN contact_details  c ON c.department_id= d.`dept_id`  GROUP BY d.dept_id ORDER BY d.order_id ASC";*/
+         /*$sql="SELECT category.category_id, category.category_name_eng,category.category_name_hin, sc.id, sc.sub_category_name_hi,sc.sub_category_name_eng, IFNULL(md.dept_id,0) dept_id, IFNULL(md.dept_name_hi,'') dept_name_hi,IFNULL(md.dept_name_en,'') dept_name_en, IFNULL(cd.total_contacts,0) total_contacts
+            FROM mst_dept_category category
+            LEFT JOIN sub_category sc ON sc.category_id = category.category_id AND sc.is_visible = 1
+           LEFT JOIN mst_department md ON md.fk_dept_category_id = category.category_id AND md.fk_sub_category_id = sc.id
+            LEFT JOIN (SELECT cd.department_id ,COUNT(1) total_contacts FROM contact_details cd GROUP BY cd.department_id) cd ON cd.department_id = md.dept_id ORDER BY md.order_id ASC";*/
+
+        $sql="SELECT md.dept_id,
+                category.category_id, category.category_name_eng,category.category_name_hin, sc.id, sc.sub_category_name_hi,sc.sub_category_name_eng, IFNULL(md.dept_id,0) dept_id, IFNULL(md.dept_name_hi,'') dept_name_hi,IFNULL(md.dept_name_en,'') dept_name_en, IFNULL(cd.total_contacts,0) total_contacts
+                FROM mst_department md
+                left JOIN mst_dept_category category on category.category_id=md.fk_dept_category_id
+                 LEFT JOIN sub_category sc ON  md.fk_sub_category_id=sc.id
+                 LEFT JOIN (SELECT cd.department_id ,COUNT(1) total_contacts FROM contact_details cd GROUP BY cd.department_id) cd ON cd.department_id = md.dept_id ORDER BY md.order_id ASC";
         $data = $this->db->query($sql)->result_array();
         return $data;
 
     }
+
+
     // ------------------------------department data show end-------------------
 
     public function list_designation_data()
@@ -96,6 +110,7 @@ class Dashboard_model extends CI_Model
         //print_r($dataApplicant);exit();
         $this->db->trans_begin();  
         $parameters = array('fk_dept_category_id'=>$dataApplicant['fk_dept_category_id'],
+                            'fk_sub_category_id'=>$dataApplicant['subcategory_id'],
                             'order_id'=>$dataApplicant['order_id'],
                              'dept_name_hi'=>$dataApplicant['dept_hindi_name'],
                              'dept_name_en'=>$dataApplicant['dept_eng_name'], 
@@ -226,14 +241,44 @@ class Dashboard_model extends CI_Model
         return $data;
     }
 
-
     public function get_designation($dept_id){
         $getSql="SELECT designation_id,designation_name_eng, designation_name_hindi FROM mst_designation where department_id =".$dept_id;
         $data = $this->db->query($getSql)->result_array();
         return $data;
     }
 
+    // -----------------------list department category start-----------------------
 
+    public function get_department_category(){
+
+        $getSql = "SELECT `category_id`, `category_name_eng`, `sequence`, `category_name_hin` FROM `mst_dept_category`";
+        $data = $this->db->query($getSql)->result_array();
+        return $data;
+    }
+
+    // -----------------------List Department category end-------------------------
+
+    // -------------------------sub category data start--------------------------------
+    public function get_subcategory($category_id){
+        $sql="SELECT id,category_id,sub_category_name_hi,sub_category_name_eng FROM `sub_category` WHERE category_id=? and is_visible=1";
+        return $this->db->query($sql,$category_id)->result_array(); 
+
+    }
+
+    public function get_subcategorydetails($category_id){
+        $sql="SELECT id,category_id,sub_category_name_hi,sub_category_name_eng FROM `sub_category` WHERE category_id=?";
+        return $this->db->query($sql,$category_id)->result_array(); 
+
+    }
+    //-------------------------sub category data end-------------------------------- 
+
+    // ----------------------------------department list sub-cate wise start--------
+
+    public function get_departmentList($subcate){
+
+        $getSql = "SELECT `dept_id`,fk_sub_category_id, `dept_name_hi`, `dept_name_en` FROM `mst_department`  WHERE fk_sub_category_id=? ORDER BY order_id";
+         return $this->db->query($getSql,$subcate)->result_array();
+    }
     // ---------------Insert IAS Details Start-----------------------------------------------
 
     public function insert_ias_detail($dataApplicant){
@@ -354,19 +399,7 @@ class Dashboard_model extends CI_Model
     //-----------------------------insert department category data end------------------------------
 
 
-    // -----------------------list department category start-----------------------
-
-    public function get_department_category(){
-
-        $getSql = "SELECT `category_id`, `category_name_eng`, `sequence`, `category_name_hin` FROM `mst_dept_category`";
-        $data = $this->db->query($getSql)->result_array();
-        return $data;
-    }
-
-
-
-    // -----------------------List Department category end-------------------------
-
+    
     public function contact_dept_count(){
         
         $sql="SELECT COUNT(c.name) as number , md.`dept_id`, md.`order_id`, md.`dept_name_hi`, md.`dept_name_en`,md.fk_dept_category_id FROM mst_department md
@@ -399,6 +432,7 @@ class Dashboard_model extends CI_Model
         //print_r($dataApplicant);exit();
         $dept_id = $dataApplicant['dept_id'];
         $parameters = array('fk_dept_category_id'=>$dataApplicant['fk_dept_category_id'],
+                            'fk_sub_category_id'=>$dataApplicant['subcategory_id'],
                              'dept_name_hi'=>$dataApplicant['dept_name_hi'],
                              'dept_name_en'=>$dataApplicant['dept_name_en'],
                              'added_ip'=>$dataApplicant['system_ip'],
@@ -497,6 +531,8 @@ class Dashboard_model extends CI_Model
 
 
    // ----------------------update department data end---------------------
+
+
 
 
 }

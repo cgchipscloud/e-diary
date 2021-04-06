@@ -78,6 +78,23 @@ class Dashboard extends MY_Controller {
         echo json_encode($desig_list, JSON_UNESCAPED_SLASHES);
     }
 
+    // category, sub category and department data show start
+
+    public function ajax_subcategory_list()
+    {
+        $category_id=$_POST['category_id'];
+        $subcat_list=$this->Dashboard_model->get_subcategory($category_id);
+        echo json_encode($subcat_list, JSON_UNESCAPED_SLASHES);
+    }
+
+    public function ajax_department_list()
+    {
+        $subcategory_id=$_POST['fk_sub_category_id'];
+        $daepartment_list=$this->Dashboard_model->get_departmentList($subcategory_id);
+        echo json_encode($daepartment_list, JSON_UNESCAPED_SLASHES);
+    }
+    // category, sub category and department data show end
+
     // list show start
     public function list_department() 
     {
@@ -121,6 +138,7 @@ class Dashboard extends MY_Controller {
 
     public function insert_department(){
         $dataApplicant['fk_dept_category_id']=$_POST['fk_dept_category_id'];
+        $dataApplicant['subcategory_id']=$_POST['subcategory_id'];
         $dataApplicant['order_id']=$_POST['order_id'];
         $dataApplicant['dept_hindi_name'] = $_POST['dept_hindi_name'];
         $dataApplicant['dept_eng_name'] = $_POST['dept_eng_name'];
@@ -415,8 +433,7 @@ class Dashboard extends MY_Controller {
     public function edit_department() 
     {
         $data['title']="E-Dairy";
-
-        $data['dept_category'] = $this->Dashboard_model->get_department_category();
+        $data['dept_cate'] = $this->Dashboard_model->get_department_category();
         if(isset($_GET['dept_id']) && !empty($_GET['dept_id']))
         {
           $dept_id = $_GET['dept_id'];
@@ -431,6 +448,7 @@ class Dashboard extends MY_Controller {
      public function update_deaprtment_details(){
         $dataApplicant['dept_id'] = $_POST['dept_id'];
         $dataApplicant['order_id'] = $_POST['order_id'];
+        $dataApplicant['subcategory_id'] = $_POST['subcategory_id'];
         $dataApplicant['fk_dept_category_id'] = $_POST['fk_dept_category_id'];
         $dataApplicant['dept_name_hi'] = $_POST['dept_name_hi'];
         $dataApplicant['dept_name_en'] = $_POST['dept_name_en'];
